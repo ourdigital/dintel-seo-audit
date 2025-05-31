@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오류</title>
+    <style>
+        :root {
+            --primary-color: #4a6fa5;
+            --text-color: #333;
+            --background-color: #fff;
+            --light-bg: #f9f9f9;
+        }
+        
+        body {
+            font-family: 'Noto Sans KR', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            flex: 1;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        
+        h1 {
+            color: var(--primary-color);
+        }
+        
+        header h1 {
+            color: white;
+            margin: 0;
+        }
+        
+        .error-container {
+            background-color: var(--light-bg);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .button:hover {
+            background-color: #3a5a8c;
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>오류</h1>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="error-container">
+            <h1>오류가 발생했습니다</h1>
+            <p>{{ message }}</p>
+            <a href="/" class="button">홈으로 돌아가기</a>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 SEO 감사 도구. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

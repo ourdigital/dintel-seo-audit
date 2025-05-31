@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO 감사 진행 상황</title>
+    <style>
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #5b8c5a;
+            --accent-color: #d98c5f;
+            --text-color: #333;
+            --background-color: #fff;
+            --light-bg: #f9f9f9;
+        }
+        
+        body {
+            font-family: 'Noto Sans KR', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        
+        h1, h2, h3 {
+            color: var(--primary-color);
+        }
+        
+        header h1 {
+            color: white;
+            margin: 0;
+        }
+        
+        .status-container {
+            background-color: var(--light-bg);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .loading-spinner {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--primary-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .progress-container {
+            margin: 20px 0;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            background-color: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            width: 0%;
+            height: 20px;
+            background-color: var(--primary-color);
+            text-align: center;
+            line-height: 20px;
+            color: white;
+            transition: width 0.5s;
+        }
+        
+        .steps {
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .step {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #eee;
+        }
+        
+        .step.completed {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .step.current {
+            background-color: #cce5ff;
+            color: #004085;
+            font-weight: bold;
+        }
+        
+        .result-container {
+            display: none;
+            background-color: var(--light-bg);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .button-container {
+            margin-top: 20px;
+        }
+        
+        .button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin: 0 10px;
+            transition: background-color 0.3s;
+        }
+        
+        .button:hover {
+            background-color: #3a5a8c;
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>SEO 감사 진행 상황</h1>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="status-container" id="status-container">
+            <div class="loading-spinner"></div>
+            <h2>웹사이트 분석 중...</h2>
+            <p>웹사이트를 분석하고 있습니다. 이 과정은 몇 분 정도 소요될 수 있습니다.</p>
+            
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress" id="progress-bar">0%</div>
+                </div>
+            </div>
+            
+            <div class="steps">
+                <div class="step" id="step-1">1. 웹사이트 크롤링</div>
+                <div class="step" id="step-2">2. 데이터 추출 및 저장</div>
+                <div class="step" id="step-3">3. 텍스트 분석</div>
+                <div class="step" id="step-4">4. 기술적 SEO 검사</div>
+                <div class="step" id="step-5">5. 페이지 랭킹</div>
+                <div class="step" id="step-6">6. 온페이지 SEO 분석</div>
+                <div class="step" id="step-7">7. 보고서 생성</div>
+                <div class="step" id="step-8">8. 프레젠테이션 디자인</div>
+            </div>
+        </div>
+        
+        <div class="result-container" id="result-container">
+            <h2>분석이 완료되었습니다!</h2>
+            <p>웹사이트의 SEO 감사가 성공적으로 완료되었습니다. 아래 버튼을 통해 결과를 확인하고 다운로드할 수 있습니다.</p>
+            
+            <div class="button-container">
+                <a href="#" class="button" id="view-presentation">프레젠테이션 보기</a>
+                <a href="#" class="button" id="download-pptx">PPTX 다운로드</a>
+                <a href="#" class="button" id="download-pdf">PDF 다운로드</a>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 SEO 감사 도구. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // 세션 ID 가져오기
+        const sessionId = '{{ session_id }}';
+        let currentStep = 1;
+        let checkInterval;
+        
+        // 진행 상태 업데이트
+        function updateProgress(step) {
+            const totalSteps = 8;
+            const progressPercent = Math.min(Math.round((step / totalSteps) * 100), 100);
+            
+            document.getElementById('progress-bar').style.width = progressPercent + '%';
+            document.getElementById('progress-bar').textContent = progressPercent + '%';
+            
+            // 단계 상태 업데이트
+            for (let i = 1; i <= totalSteps; i++) {
+                const stepElement = document.getElementById('step-' + i);
+                
+                if (i < step) {
+                    stepElement.className = 'step completed';
+                } else if (i === step) {
+                    stepElement.className = 'step current';
+                } else {
+                    stepElement.className = 'step';
+                }
+            }
+        }
+        
+        // 감사 시작
+        function startAudit() {
+            // URL 파라미터에서 URL 가져오기
+            const urlParams = new URLSearchParams(window.location.search);
+            const url = urlParams.get('url') || localStorage.getItem('audit_url');
+            
+            if (!url) {
+                alert('URL이 지정되지 않았습니다.');
+                window.location.href = '/';
+                return;
+            }
+            
+            // URL 저장
+            localStorage.setItem('audit_url', url);
+            
+            // 감사 시작 요청
+            fetch('/api/audit/' + sessionId + '/start', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ url: url })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    checkStatus();
+                } else {
+                    alert('감사 시작 중 오류가 발생했습니다: ' + data.message);
+                }
+            })
+            .catch(error => {
+                alert('오류가 발생했습니다: ' + error);
+            });
+            
+            // 상태 확인 인터벌 설정
+            checkInterval = setInterval(checkStatus, 5000);
+            
+            // 초기 진행 상태 업데이트
+            updateProgress(currentStep);
+        }
+        
+        // 상태 확인
+        function checkStatus() {
+            fetch('/api/audit/' + sessionId + '/status')
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'completed') {
+                    // 감사 완료
+                    clearInterval(checkInterval);
+                    updateProgress(8);
+                    
+                    // 결과 표시
+                    document.getElementById('status-container').style.display = 'none';
+                    document.getElementById('result-container').style.display = 'block';
+                    
+                    // 버튼 URL 설정
+                    document.getElementById('view-presentation').href = data.result.presentation_url;
+                    document.getElementById('download-pptx').href = data.result.download.pptx;
+                    document.getElementById('download-pdf').href = data.result.download.pdf;
+                } else if (data.status === 'in_progress') {
+                    // 진행 중
+                    // 여기서는 단계를 시뮬레이션하지만, 실제로는 서버에서 현재 단계를 받아올 수 있습니다.
+                    if (currentStep < 8) {
+                        currentStep += Math.floor(Math.random() * 2);  // 랜덤하게 진행
+                        updateProgress(currentStep);
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('상태 확인 중 오류가 발생했습니다:', error);
+            });
+        }
+        
+        // 페이지 로드 시 감사 시작
+        window.addEventListener('load', startAudit);
+    </script>
+</body>
+</html>
