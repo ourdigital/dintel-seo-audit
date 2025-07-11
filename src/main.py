@@ -169,19 +169,19 @@ def start_audit(session_id):
             designer = PresentationDesigner(report_data)
             charts = designer.generate_charts(charts_dir)
             
-            # HTML 프레젠테이션 생성
+            # Generate HTML presentation
             html_file = os.path.join(presentation_dir, 'presentation.html')
             designer.generate_presentation_html(charts, html_file)
             
-            # PPTX 생성
+            # Generate PPTX
             pptx_file = os.path.join(presentation_dir, 'presentation.pptx')
             designer.generate_pptx(charts, pptx_file)
             
-            # PDF 생성
+            # Generate PDF
             pdf_file = os.path.join(presentation_dir, 'presentation.pdf')
             designer.generate_pdf(html_file, pdf_file)
             
-            # 결과 저장
+            # Save results
             result = {
                 'session_id': session_id,
                 'website_url': url,
@@ -201,14 +201,14 @@ def start_audit(session_id):
                 }
             }
             
-            # 결과 파일 저장
+            # Save result file
             result_file = os.path.join(session_dir, 'result.json')
             with open(result_file, 'w', encoding='utf-8') as f:
                 json.dump(result, f, ensure_ascii=False, indent=2)
                 
             return jsonify({
                 'status': 'success',
-                'message': '감사가 완료되었습니다.',
+                'message': 'Audit completed successfully.',
                 'result': {
                     'session_id': session_id,
                     'presentation_url': url_for('view_presentation', session_id=session_id),
@@ -222,7 +222,7 @@ def start_audit(session_id):
     except Exception as e:
         return jsonify({
             'status': 'error',
-            'message': f'감사 중 오류가 발생했습니다: {str(e)}'
+            'message': f'An error occurred during audit: {str(e)}'
         }), 500
 
 @app.route('/api/audit/<session_id>/status', methods=['GET'])
