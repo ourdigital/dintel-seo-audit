@@ -30,6 +30,12 @@ python src/main.py
 
 # Access the application at
 # http://localhost:5000
+
+# Test basic functionality
+python simple_test.py
+
+# Initialize database manually
+python init_db.py
 ```
 
 ## Production Deployment
