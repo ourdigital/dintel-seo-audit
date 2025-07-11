@@ -53,20 +53,20 @@ def index():
 def audit():
     url = request.form.get('url')
     if not url:
-        return jsonify({'error': 'URL이 필요합니다.'}), 400
+        return jsonify({'error': 'URL is required.'}), 400
         
-    # 세션 ID 생성
+    # Generate session ID
     session_id = secure_filename(url.replace('://', '_').replace('/', '_'))
     
-    # 작업 디렉토리 생성
+    # Create working directory
     session_dir = os.path.join(app.config['UPLOAD_FOLDER'], session_id)
     os.makedirs(session_dir, exist_ok=True)
     
-    # 크롤링 및 분석 작업 시작
+    # Start crawling and analysis process
     return jsonify({
         'session_id': session_id,
-        'message': f'{url} 크롤링 및 분석 작업이 시작되었습니다.',
-        'redirect': url_for('audit_status', session_id=session_id)
+        'message': f'Crawling and analysis process started for {url}.',
+        'redirect': url_for('audit_status', session_id=session_id) + f'?url={quote(url)}'
     })
 
 @app.route('/audit/<session_id>/status')
@@ -79,71 +79,71 @@ def start_audit(session_id):
     url = data.get('url')
     
     if not url:
-        return jsonify({'error': 'URL이 필요합니다.'}), 400
+        return jsonify({'error': 'URL is required.'}), 400
         
-    # 작업 디렉토리 생성
+    # Create working directory
     session_dir = os.path.join(app.config['UPLOAD_FOLDER'], session_id)
     os.makedirs(session_dir, exist_ok=True)
     
     try:
-        # 1. 크롤링
+        # 1. Crawling
         crawler = SEOCrawler(url, max_pages=50, max_depth=3)
         crawl_result = crawler.crawl()
         
-        # 크롤링 결과 저장
+        # Save crawling results
         crawl_file = os.path.join(session_dir, 'crawl_result.json')
         with open(crawl_file, 'w', encoding='utf-8') as f:
             json.dump(crawl_result, f, ensure_ascii=False, indent=2)
             
-        # 2. 데이터베이스 초기화
+        # 2. Database initialization
         with app.app_context():
             db.create_all()
             
-            # 3. 크롤링 데이터 가져오기
+            # 3. Import crawling data
             importer = SEODataImporter(db)
             import_summary = importer.import_from_json(crawl_file)
             
-            # 웹사이트 ID 가져오기
+            # Get website ID
             website = Website.query.filter_by(url=url).first()
             if not website:
-                return jsonify({'error': '웹사이트 정보를 찾을 수 없습니다.'}), 500
+                return jsonify({'error': 'Website information not found.'}), 500
                 
             website_id = website.id
             
-            # 4. 텍스트 분석
+            # 4. Text analysis
             analyzer = TextAnalyzer(db)
             text_analysis = analyzer.analyze_website(website_id)
             
-            # 텍스트 분석 결과 저장
+            # Save text analysis results
             text_analysis_dir = os.path.join(session_dir, 'text_analysis')
             analysis_files = analyzer.save_analysis_results(text_analysis, text_analysis_dir)
             
-            # 5. 기술적 SEO 검사
+            # 5. Technical SEO check
             tech_checker = TechnicalSEOChecker(db)
             tech_results = tech_checker.check_website(website_id)
             
-            # 기술적 SEO 검사 결과 저장
+            # Save technical SEO check results
             tech_file = os.path.join(session_dir, 'technical_seo.json')
             tech_checker.save_results(tech_results, tech_file)
             
-            # 6. 페이지 랭킹
+            # 6. Page ranking
             ranker = PageRanker(db)
             ranked_pages = ranker.rank_pages(website_id, top_n=20)
             
-            # 페이지 랭킹 결과 저장
+            # Save page ranking results
             ranking_file = os.path.join(session_dir, 'ranked_pages.json')
             ranker.save_ranked_pages(ranked_pages, ranking_file)
             
-            # 7. 온페이지 SEO 분석
+            # 7. On-page SEO analysis
             page_ids = [page['id'] for page in ranked_pages]
             onpage_analyzer = OnPageSEOAnalyzer(db)
             onpage_results = onpage_analyzer.analyze_pages(page_ids)
             
-            # 온페이지 SEO 분석 결과 저장
+            # Save on-page SEO analysis results
             onpage_file = os.path.join(session_dir, 'onpage_seo.json')
             onpage_analyzer.save_analysis_results(onpage_results, onpage_file)
             
-            # 8. 보고서 생성
+            # 8. Report generation
             report_dir = os.path.join(app.config['REPORTS_FOLDER'], session_id)
             os.makedirs(report_dir, exist_ok=True)
             
@@ -156,7 +156,7 @@ def start_audit(session_id):
                 report_dir
             )
             
-            # 9. 프레젠테이션 디자인
+            # 9. Presentation design
             with open(report_files['json'], 'r', encoding='utf-8') as f:
                 report_data = json.load(f)
                 
