@@ -1,12 +1,24 @@
 import sys
 import os
-sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))  # 상위 디렉토리를 Python 경로에 추가
+import nltk
+
+# Add project root to Python path
+sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
+
+# Configure NLTK data path to use ~/Utilities/nltk_data
+nltk_data_path = os.path.expanduser("~/Utilities/nltk_data")
+if os.path.exists(nltk_data_path):
+    nltk.data.path.insert(0, nltk_data_path)
+    print(f"Using NLTK data from: {nltk_data_path}")
+else:
+    print(f"NLTK data path not found: {nltk_data_path}")
+    print("NLTK will use default data locations")
 
 from flask import Flask, render_template, jsonify, request, send_file, redirect, url_for
-import os
 import json
 import tempfile
 from werkzeug.utils import secure_filename
+from urllib.parse import quote
 from src.models.seo_data import db, Website, Page, Keyword, Link, TechnicalSEO
 from src.crawler.seo_crawler import SEOCrawler
 from src.crawler.data_importer import SEODataImporter
@@ -25,7 +37,7 @@ app.config['REPORTS_FOLDER'] = os.path.join(os.path.dirname(os.path.abspath(__fi
 app.config['CHARTS_FOLDER'] = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static', 'charts')
 app.config['PRESENTATIONS_FOLDER'] = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static', 'presentations')
 
-# 필요한 디렉토리 생성
+# Create required directories
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 os.makedirs(app.config['REPORTS_FOLDER'], exist_ok=True)
 os.makedirs(app.config['CHARTS_FOLDER'], exist_ok=True)
