@@ -248,7 +248,7 @@ def check_audit_status(session_id):
     else:
         return jsonify({
             'status': 'in_progress',
-            'message': '감사가 진행 중입니다.'
+            'message': 'Audit is in progress.'
         })
 
 @app.route('/presentation/<session_id>')
@@ -256,7 +256,7 @@ def view_presentation(session_id):
     presentation_file = os.path.join(app.config['PRESENTATIONS_FOLDER'], session_id, 'presentation.html')
     
     if not os.path.exists(presentation_file):
-        return render_template('error.html', message='프레젠테이션을 찾을 수 없습니다.')
+        return render_template('error.html', message='Presentation not found.')
         
     with open(presentation_file, 'r', encoding='utf-8') as f:
         content = f.read()
@@ -268,7 +268,7 @@ def download_pptx(session_id):
     pptx_file = os.path.join(app.config['PRESENTATIONS_FOLDER'], session_id, 'presentation.pptx')
     
     if not os.path.exists(pptx_file):
-        return render_template('error.html', message='PPTX 파일을 찾을 수 없습니다.')
+        return render_template('error.html', message='PPTX file not found.')
         
     return send_file(pptx_file, as_attachment=True, download_name='seo_audit_report.pptx')
 
@@ -277,11 +277,12 @@ def download_pdf(session_id):
     pdf_file = os.path.join(app.config['PRESENTATIONS_FOLDER'], session_id, 'presentation.pdf')
     
     if not os.path.exists(pdf_file):
-        return render_template('error.html', message='PDF 파일을 찾을 수 없습니다.')
+        return render_template('error.html', message='PDF file not found.')
         
     return send_file(pdf_file, as_attachment=True, download_name='seo_audit_report.pdf')
 
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    print("Starting SEO Audit application on http://localhost:5001")
+    app.run(host='0.0.0.0', port=5001, debug=True)
