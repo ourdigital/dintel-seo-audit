@@ -250,16 +250,21 @@
                 },
                 body: JSON.stringify({ url: url })
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('HTTP ' + response.status + ' ' + response.statusText);
+                }
+                return response.json();
+            })
             .then(data => {
                 if (data.status === 'success') {
                     checkStatus();
                 } else {
-                    alert('감사 시작 중 오류가 발생했습니다: ' + data.message);
+                    alert('감사 시작 중 오류가 발생했습니다: ' + (data.message || '알 수 없는 오류'));
                 }
             })
             .catch(error => {
-                alert('오류가 발생했습니다: ' + error);
+                alert('오류가 발생했습니다: ' + error.message);
             });
             
             // 상태 확인 인터벌 설정
