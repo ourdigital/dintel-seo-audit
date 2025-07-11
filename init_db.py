@@ -1,22 +1,39 @@
 import os
 import sys
+import nltk
+
+# Add project root to Python path
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
-from flask_sqlalchemy import SQLAlchemy
+# Set NLTK data path to ~/Utilities/nltk_data
+nltk_data_path = os.path.expanduser("~/Utilities/nltk_data")
+if os.path.exists(nltk_data_path):
+    nltk.data.path.insert(0, nltk_data_path)
+    print(f"Using NLTK data from: {nltk_data_path}")
+else:
+    print(f"NLTK data path not found: {nltk_data_path}")
+    print("NLTK will use default data locations")
 
-db = SQLAlchemy()
-
-def init_db(app):
+def init_db():
     """
-    데이터베이스 초기화 함수
+    Initialize the database with all required tables.
     
-    Args:
-        app: Flask 애플리케이션 인스턴스
+    This function creates all database tables defined in the SQLAlchemy models
+    and sets up the initial database structure for the SEO audit application.
     """
+    from src.main import app, db
+    
     with app.app_context():
+        # Create all database tables
         db.create_all()
-        print("데이터베이스가 초기화되었습니다.")
+        print("Database has been initialized successfully.")
+        print(f"Database location: {app.config['SQLALCHEMY_DATABASE_URI']}")
+        
+        # Check if tables were created
+        from sqlalchemy import inspect
+        inspector = inspect(db.engine)
+        tables = inspector.get_table_names()
+        print(f"Created tables: {', '.join(tables)}")
 
 if __name__ == "__main__":
-    from src.main import app
-    init_db(app)
+    init_db()
