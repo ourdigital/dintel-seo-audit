@@ -52,42 +52,74 @@ waitress-serve --port=5000 src.main:app
 
 ## Core Architecture
 
-The application follows a modular architecture with several key components:
+The application follows a modular architecture with clear separation of concerns:
 
-1. **Crawler Module**: Handles website crawling, text extraction, and initial data collection.
-   - `SEOCrawler`: Crawls websites, extracts content, links, and metadata.
-   - `SEODataImporter`: Imports crawled data into the database.
+### 1. **Crawler Module** (`src/crawler/`)
+- **`SEOCrawler`**: Main crawler that extracts content, metadata, links, and builds knowledge graphs using NetworkX. Supports configurable depth and page limits.
+- **`SEODataImporter`**: Handles data persistence, imports crawled JSON data into SQLite database with transaction management.
 
-2. **Analyzer Module**: Performs various analyses on the collected data.
-   - `TextAnalyzer`: Analyzes text content and keywords.
-   - `TechnicalSEOChecker`: Checks technical SEO aspects like robots.txt, sitemap.xml, etc.
-   - `PageRanker`: Ranks pages based on SEO metrics.
-   - `OnPageSEOAnalyzer`: Analyzes on-page SEO elements.
+### 2. **Analyzer Module** (`src/analyzer/`)
+- **`TextAnalyzer`**: Performs multilingual content analysis including keyword extraction, density calculation, and readability scoring for Korean and English.
+- **`TechnicalSEOChecker`**: Comprehensive technical SEO audit covering robots.txt, sitemap.xml, Core Web Vitals, meta tags, and mobile-friendliness.
+- **`PageRanker`**: Calculates page importance scores based on homepage status, depth, internal links, and content quality.
+- **`OnPageSEOAnalyzer`**: Detailed page-level analysis including title optimization, URL structure, heading evaluation, and social media tags.
 
-3. **Report Module**: Generates comprehensive reports based on analysis results.
-   - `ReportGenerator`: Creates text reports and JSON data for visualization.
+### 3. **Report Module** (`src/report/`)
+- **`ReportGenerator`**: Creates comprehensive reports in JSON, Markdown, and HTML formats with weighted SEO scores and actionable recommendations.
 
-4. **Presentation Module**: Creates visual presentations of the SEO audit results.
-   - `PresentationDesigner`: Designs visual elements, charts, and generates PPTX/PDF presentations.
+### 4. **Presentation Module** (`src/presentation/`)
+- **`PresentationDesigner`**: Generates charts using matplotlib and creates interactive HTML presentations with PPTX/PDF export capabilities.
 
-5. **Data Models**: SQLAlchemy models for storing data.
-   - `Website`: Represents a website being analyzed.
-   - `Page`: Represents individual pages of a website.
-   - `Keyword`: Stores keyword information for each page.
-   - `Link`: Stores link information for each page.
-   - `TechnicalSEO`: Stores technical SEO data for a website.
+### 5. **Data Models** (`src/models/`)
+SQLAlchemy models with proper relationships:
+- `Website`: Main website entity with pages and technical SEO data
+- `Page`: Individual page data with keywords and links
+- `Keyword`: Keyword frequency and density data
+- `Link`: Internal/external link relationships
+- `TechnicalSEO`: Technical SEO audit results
 
-6. **Main Application**: Flask application handling routes and orchestrating the SEO audit process.
+### 6. **Flask Application** (`src/main.py`)
+Session-based API with endpoints for audit processing, status checking, and result delivery.
+
+## Key Features
+
+- **Multi-language support**: Korean and English text analysis with appropriate tokenization
+- **Comprehensive SEO analysis**: Technical, on-page, and keyword analysis
+- **Visual reporting**: Multiple chart types with professional styling
+- **Export capabilities**: HTML, PPTX, and PDF formats
+- **Scalable architecture**: Modular design with database-driven persistence
 
 ## Workflow
 
-1. User submits a URL for analysis.
-2. Application crawls the website (limited to 50 pages by default).
-3. Extracted data is stored in the database.
-4. Various analyzers process the data and generate insights.
-5. Results are compiled into comprehensive reports.
-6. Visual presentations (HTML, PPTX, PDF) are generated for the user.
-7. User can view the results and download the reports.
+1. User submits URL → Session ID generation
+2. Website crawling (max 50 pages, depth 3) → Data extraction
+3. Database import → Multi-phase analysis (text, technical, ranking, on-page)
+4. Report generation → Visual presentation creation
+5. Results available via web interface and downloadable formats
+
+## Development Notes
+
+### Database Management
+- SQLite database (`src/seo_audit.db`) with automatic table creation
+- Session-based data isolation using secure_filename for directory names
+- Database initialization handled by `init_db.py` or automatic creation in main.py
+
+### File Structure
+- **Static files**: `src/static/` contains uploads, reports, charts, and presentations
+- **Templates**: `src/templates/` contains HTML templates for web interface
+- **Session data**: Each audit creates a session directory with JSON results
+
+### Key Dependencies
+- **Flask + SQLAlchemy**: Web framework and ORM
+- **BeautifulSoup4 + NLTK**: HTML parsing and text analysis
+- **NetworkX**: Graph analysis for knowledge graphs
+- **matplotlib**: Chart generation
+- **python-pptx + WeasyPrint**: Document generation
+
+### Configuration
+- Crawl limits: 50 pages max, depth 3 (configurable in main.py:78)
+- Database: SQLite with automatic table creation
+- File uploads: Secure filename handling with session isolation
 
 ## Troubleshooting
 
