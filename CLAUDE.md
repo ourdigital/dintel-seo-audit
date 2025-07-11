@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is an SEO audit web application built with Flask that crawls websites, analyzes SEO metrics, and generates comprehensive reports and presentations. The application is designed to provide technical SEO analysis, on-page SEO analysis, keyword analysis, and visual presentations of the findings.
+This is an SEO audit web application built with Flask that crawls websites, analyzes SEO metrics, and generates comprehensive reports and presentations. The application supports both Korean and English content analysis and follows a modular architecture with clear separation of concerns.
 
 ## Environment Setup
 
