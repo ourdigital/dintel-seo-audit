@@ -5,6 +5,11 @@ import nltk
 # Add project root to Python path
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
+# Configure environment variables for WeasyPrint on macOS
+if os.path.exists("/opt/homebrew/lib"):
+    os.environ["DYLD_LIBRARY_PATH"] = "/opt/homebrew/lib:" + os.environ.get("DYLD_LIBRARY_PATH", "")
+    os.environ["PKG_CONFIG_PATH"] = "/opt/homebrew/lib/pkgconfig:" + os.environ.get("PKG_CONFIG_PATH", "")
+
 # Configure NLTK data path to use ~/Utilities/nltk_data
 nltk_data_path = os.path.expanduser("~/Utilities/nltk_data")
 if os.path.exists(nltk_data_path):
@@ -103,8 +108,12 @@ def start_audit(session_id):
             importer = SEODataImporter(db)
             import_summary = importer.import_from_json(crawl_file)
             
-            # Get website ID
+            # Get website ID (handle URL normalization)
             website = Website.query.filter_by(url=url).first()
+            if not website:
+                # Try with normalized URL (with trailing slash)
+                normalized_url = url.rstrip('/') + '/'
+                website = Website.query.filter_by(url=normalized_url).first()
             if not website:
                 return jsonify({'error': 'Website information not found.'}), 500
                 
@@ -220,6 +229,9 @@ def start_audit(session_id):
             })
             
     except Exception as e:
+        import traceback
+        error_details = traceback.format_exc()
+        print(f"Audit error: {error_details}")  # Log to console for debugging
         return jsonify({
             'status': 'error',
             'message': f'An error occurred during audit: {str(e)}'

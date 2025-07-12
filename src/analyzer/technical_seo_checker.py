@@ -5,7 +5,7 @@ import urllib.parse
 import logging
 from bs4 import BeautifulSoup
 from urllib.robotparser import RobotFileParser
-from src.models.seo_data import db, Website, Page, TechnicalSEO
+from src.models.seo_data import db, Website, Page, TechnicalSEO, Link, Keyword
 
 class TechnicalSEOChecker:
     """

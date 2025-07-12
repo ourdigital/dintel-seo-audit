@@ -1,100 +1,202 @@
 # SEO Audit Web Application
 
-A comprehensive SEO audit tool for small websites that analyzes website SEO performance and generates detailed reports with visual presentations.
+A comprehensive, enterprise-grade SEO audit tool that analyzes website SEO performance and generates detailed reports with visual presentations. Features both web interface and sophisticated CLI tools for professional SEO analysis.
 
-## Features
+## 🚀 Key Features
 
-### 🔍 **Web Crawling & Text Analysis**
-- Crawls websites and extracts text data, metadata, and links
-- Performs keyword density analysis and builds knowledge graphs
-- Supports both Korean and English content analysis
-- Configurable crawl limits (50 pages max, depth 3)
+### 🔍 **Advanced Web Crawling & Analysis**
+- **Intelligent Crawling**: Crawls websites with configurable depth and page limits
+- **Multi-Language Support**: Korean and English content analysis with appropriate tokenization
+- **Knowledge Graph Generation**: Builds comprehensive keyword relationship maps using NetworkX
+- **Content Extraction**: Advanced text analysis with readability scoring and keyword density
+- **Link Analysis**: Internal/external link classification and relationship mapping
 
 ### 🔧 **Technical SEO Audit**
-- Analyzes robots.txt and sitemap.xml
-- Checks site structure and Core Web Vitals
-- Evaluates redirects, canonical links, and meta tags
-- Assesses mobile-friendliness and security
+- **Infrastructure Analysis**: robots.txt, sitemap.xml, and site structure evaluation
+- **Core Web Vitals**: LCP, FID, and CLS performance metrics
+- **Security Assessment**: HTTPS, canonical links, and security headers
+- **Mobile Optimization**: Mobile-friendliness and responsive design checks
+- **Structured Data**: Schema.org markup validation and recommendations
 
 ### 📊 **On-Page SEO Analysis**
-- Identifies top 20 most important pages
-- Analyzes SEO elements for each page
-- Evaluates title optimization, URL structure, and content quality
-- Checks heading tags and social media integration
+- **Page Ranking**: Identifies top 20 most important pages using proprietary scoring
+- **Content Optimization**: Title, meta description, and heading tag analysis
+- **URL Structure**: SEO-friendly URL pattern evaluation
+- **Social Media Integration**: Open Graph and Twitter Card validation
+- **Image Optimization**: Alt text and image SEO best practices
 
 ### 📈 **Comprehensive Reporting**
-- Generates detailed reports in multiple formats (JSON, Markdown, HTML)
-- Provides current status, potential issues, and improvement recommendations
-- Includes weighted SEO scores and actionable priority lists
+- **Multi-Format Output**: JSON, Markdown, HTML reports with detailed insights
+- **Weighted Scoring**: Advanced scoring algorithm considering multiple SEO factors
+- **Actionable Recommendations**: Priority-based improvement suggestions
+- **Issue Tracking**: Critical, warning, and informational issue classification
+- **Progress Monitoring**: Historical data comparison and trend analysis
 
-### 🎨 **Visual Presentations**
-- Creates professional charts and graphs using matplotlib
-- Generates interactive HTML presentations
-- Exports to PPTX and PDF formats
-- Clean, minimal design with effective data visualization
+### 🎨 **Professional Visualizations**
+- **Dynamic Charts**: matplotlib-powered charts with Korean font support
+- **Interactive Presentations**: HTML presentations with slide navigation
+- **Export Options**: PPTX and PDF formats for client presentations
+- **Custom Styling**: Clean, minimal design with effective data visualization
+- **Responsive Design**: Mobile-friendly report viewing
 
-## Installation
+### 🖥️ **CLI Interface** (New!)
+- **Command-line Tools**: Professional CLI for automated workflows
+- **Interactive Mode**: Guided audit setup with intelligent prompts
+- **Batch Processing**: Multiple website analysis with queue management
+- **Data Persistence**: Cached results and incremental updates
+- **Server Management**: Graceful start/stop with process monitoring
 
-### Prerequisites
+### 🛠️ **Enterprise Features**
+- **Data Caching**: Intelligent caching to avoid redundant crawls
+- **Session Management**: Secure session handling with UUID-based tracking
+- **Error Recovery**: Robust error handling with graceful degradation
+- **Logging**: Comprehensive logging for debugging and monitoring
+- **Scalability**: Modular architecture supporting high-volume analysis
 
-- Python 3.8 or higher
-- pip (Python package manager)
-- Virtual environment (recommended)
+## 📋 Prerequisites
 
-### Setup Steps
+### System Requirements
+- **Python 3.8+**: Required for all functionality
+- **pip**: Python package manager
+- **Virtual Environment**: Strongly recommended for isolation
 
-1. **Create and activate virtual environment:**
+### macOS-Specific Requirements
+For full PDF generation support, install system libraries:
 ```bash
+# Install Homebrew if not already installed
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Install WeasyPrint dependencies
+brew install pango gdk-pixbuf libffi gobject-introspection gtk+3 cairo glib
+```
+
+### NLTK Data Setup
+The application uses custom NLTK data location:
+```bash
+# Move NLTK data to ~/Utilities/nltk_data for optimal performance
+mkdir -p ~/Utilities/nltk_data
+# Or the application will auto-download to this location
+```
+
+## 🛠️ Installation
+
+### Quick Setup
+```bash
+# Clone repository
+git clone <repository-url>
+cd seo-audit-basic
+
+# Create and activate virtual environment
 python -m venv venv
 source venv/bin/activate  # Linux/Mac
 # OR
 venv\Scripts\activate  # Windows
-```
 
-2. **Install dependencies:**
-```bash
+# Install dependencies
 pip install -r requirements.txt
-```
 
-3. **Initialize database:**
-```bash
+# Initialize database
 python init_db.py
 ```
 
-## Usage
-
-### Development Mode
-
-1. **Start the application:**
+### Development Setup
 ```bash
-python src/main.py
-```
+# After basic setup, verify installation
+python -c "from src.main import app; print('✅ Installation successful')"
 
-2. **Access the web interface:**
-```
-http://localhost:5000
-```
-
-3. **Test basic functionality:**
-```bash
+# Test core functionality
 python simple_test.py
 ```
 
-### Production Deployment
+## 🚀 Usage
 
-For production environments, use a WSGI server:
+### Web Interface
 
-#### Using Gunicorn (Linux/Mac)
+#### Development Mode
 ```bash
+# Start the Flask development server
+python src/main.py
+
+# Access the web interface
+# http://localhost:5001
+```
+
+#### Production Deployment
+```bash
+# Using Gunicorn (Linux/Mac)
 pip install gunicorn
-gunicorn -w 4 -b 0.0.0.0:5000 'src.main:app'
+gunicorn -w 4 -b 0.0.0.0:5001 'src.main:app'
+
+# Using Waitress (Windows)
+pip install waitress
+waitress-serve --port=5001 src.main:app
 ```
 
-#### Using Waitress (Windows)
+### CLI Interface (Advanced)
+
+#### Basic Commands
 ```bash
-pip install waitress
-waitress-serve --port=5000 src.main:app
+# Start interactive SEO audit
+python cli.py audit --interactive
+
+# Quick audit with URL
+python cli.py audit --url https://example.com
+
+# Start web server with options
+python cli.py server --port 5001 --host 0.0.0.0
+
+# Check cached data
+python cli.py cache --list
+
+# View audit history
+python cli.py history --website example.com
 ```
+
+#### Interactive Mode
+```bash
+# Launch interactive CLI
+python cli.py --interactive
+
+# Follow guided prompts for:
+# - Website URL input with validation
+# - Crawl depth and page limit configuration
+# - Output format selection
+# - Report delivery options
+```
+
+#### Batch Processing
+```bash
+# Process multiple websites
+python cli.py batch --file websites.txt
+
+# Schedule recurring audits
+python cli.py schedule --url https://example.com --interval weekly
+```
+
+### User Guide
+
+#### Web Interface Workflow
+1. **Navigate to** `http://localhost:5001`
+2. **Enter website URL** in the audit form
+3. **Click "분석 시작"** to begin analysis
+4. **Monitor progress** on the status page
+5. **View results** in interactive presentation
+6. **Download reports** in PPTX/PDF format
+
+#### CLI Workflow
+1. **Start interactive mode**: `python cli.py --interactive`
+2. **Enter website URL** when prompted
+3. **Configure options** (depth, pages, format)
+4. **Monitor progress** with real-time updates
+5. **Access results** via generated file paths
+6. **Manage cache** for repeated audits
+
+#### Report Interpretation
+- **Overall Score**: Weighted average of all SEO factors
+- **Technical SEO**: Infrastructure and crawlability issues
+- **On-Page SEO**: Content optimization opportunities
+- **Priority Issues**: Critical problems requiring immediate attention
+- **Recommendations**: Actionable steps for improvement
 
 ## Project Structure
 
@@ -154,40 +256,69 @@ The application follows a modular architecture with clear separation of concerns
 - `GET /download/<session_id>/pptx` - Download PPTX report
 - `GET /download/<session_id>/pdf` - Download PDF report
 
-## Troubleshooting
+## 🔧 Troubleshooting
 
 ### Common Issues
 
-**500 Internal Server Error:**
-1. Check application logs:
+#### **Installation Problems**
 ```bash
-tail -f seo_audit.log
+# WeasyPrint dependency issues (macOS)
+brew install pango gdk-pixbuf libffi gobject-introspection gtk+3 cairo glib
+
+# NLTK data issues
+mkdir -p ~/Utilities/nltk_data
+python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords')"
+
+# Virtual environment issues
+deactivate && rm -rf venv && python -m venv venv && source venv/bin/activate
 ```
 
-2. Verify database permissions:
+#### **Runtime Errors**
 ```bash
-chmod 666 src/seo_audit.db
+# 500 Internal Server Error
+tail -f seo_audit.log  # Check logs
+chmod 666 src/seo_audit.db  # Fix database permissions
+mkdir -p src/static/{uploads,reports,charts,presentations}  # Create directories
+
+# Import errors (Link model, etc.)
+python -c "from src.analyzer.technical_seo_checker import TechnicalSEOChecker; print('✅ Imports OK')"
+
+# Font issues (Korean text)
+python -c "import matplotlib.pyplot as plt; print('✅ Matplotlib OK')"
 ```
 
-3. Ensure required directories exist:
+#### **Database Issues**
 ```bash
-mkdir -p src/static/{uploads,reports,charts,presentations}
+# Reinitialize database
+rm -f src/seo_audit.db instance/seo_audit.db
+python init_db.py
+
+# Check database integrity
+sqlite3 instance/seo_audit.db ".tables"
 ```
 
-4. Reinstall dependencies:
+#### **Performance Issues**
 ```bash
-pip install -r requirements.txt
+# Clear cache
+python cli.py cache --clear
+
+# Reduce crawl limits
+# Edit main.py: crawler = SEOCrawler(url, max_pages=10, max_depth=2)
+
+# Check system resources
+top -pid $(pgrep -f "python.*main.py")
 ```
 
-**Database Issues:**
-- Run database initialization: `python init_db.py`
-- Check SQLite file permissions
-- Verify database schema creation
+### Recent Fixes Applied
 
-**Missing Dependencies:**
-- Ensure all packages from requirements.txt are installed
-- Check for version conflicts
-- Use virtual environment to isolate dependencies
+✅ **Fixed WeasyPrint Import Issues** - Added graceful fallback for PDF generation  
+✅ **Fixed Font Configuration** - Dynamic Korean font detection on macOS  
+✅ **Fixed Link Model Import** - Added missing imports in technical_seo_checker.py  
+✅ **Fixed NLTK Data Path** - Custom path configuration for ~/Utilities/nltk_data  
+✅ **Fixed URL Normalization** - Proper handling of trailing slashes  
+✅ **Fixed Error Handling** - Comprehensive error handling with detailed logging  
+✅ **Fixed Chart Generation** - Robust chart creation with fallback options  
+✅ **Fixed Presentation Design** - Error recovery for missing dependencies  
 
 ## Contributing
 

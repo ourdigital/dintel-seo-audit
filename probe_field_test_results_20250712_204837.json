@@ -1,0 +1,369 @@
+{
+  "timestamp": "2025-07-12T20:48:37.324531",
+  "probe_command": "/Users/ourdigital/.local/bin/probe",
+  "total_tests": 45,
+  "successful_tests": 39,
+  "test_duration": 80.502681016922,
+  "test_results": [
+    {
+      "command": "/Users/ourdigital/.local/bin/probe --help",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\nusage: probe [-h] [--version] [--verbose] [--config CONFIG] <command> ...\n\nEnterprise SEO Audit Toolkit - Comprehensive website analysis and reporting\n\npositional arguments:\n  <command>             Available commands\n    seo                 SEO analysis and audit\n    server              Web server management\n    cache               Cache management\n    report              Report generation and management\n    config              Configuration management\n\noptions:\n  -h, --help            show this help message and exit\n  --version, -v         show program's version number and exit\n  --verbose, -V         Enable verbose output\n  --config CONFIG, -c CONFIG\n                        Path to configuration file\n\nFor more information on each command, use: probe <command> --help\n",
+      "stderr": "",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe --version",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\nprobe 1.0.0 - Enterprise SEO Audit Toolkit\n",
+      "stderr": "",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe seo --help",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\nusage: probe seo [-h] [--interactive] [--batch FILE] [--depth N] [--pages N]\n                 [--format {json,markdown,html,pdf,pptx} [{json,markdown,html,pdf,pptx} ...]]\n                 [--output PATH] [--no-cache] [--language {auto,ko,en}]\n                 [url]\n\nComprehensive SEO audit with technical, on-page, and content analysis\n\npositional arguments:\n  url                   Target URL to analyze\n\noptions:\n  -h, --help            show this help message and exit\n  --interactive, -i     Launch interactive mode with guided prompts\n  --batch FILE, -b FILE\n                        Batch process URLs from file\n  --depth N, -d N       Crawl depth (default: 2)\n  --pages N, -p N       Maximum pages to crawl (default: 50)\n  --format {json,markdown,html,pdf,pptx} [{json,markdown,html,pdf,pptx} ...], -f {json,markdown,html,pdf,pptx} [{json,markdown,html,pdf,pptx} ...]\n                        Output format(s) (default: json)\n  --output PATH, -o PATH\n                        Output directory or file path\n  --no-cache            Disable caching and force fresh analysis\n  --language {auto,ko,en}, -l {auto,ko,en}\n                        Content language for analysis (default: auto)\n\nExamples:\n  probe seo https://example.com                    # Basic audit\n  probe seo https://site.com -d 3 -p 100          # Deep analysis\n  probe seo --interactive                          # Guided mode\n  probe seo --batch sites.txt -f pdf html         # Batch processing\n        \n",
+      "stderr": "",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe server --help",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\nusage: probe server [-h] <action> ...\n\nStart, stop, or check status of the web interface server\n\npositional arguments:\n  <action>    Server actions\n    start     Start the web server\n    stop      Stop the web server\n    status    Check server status\n\noptions:\n  -h, --help  show this help message and exit\n",
+      "stderr": "",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe cache --help",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\nusage: probe cache [-h] <action> ...\n\nManage audit cache and stored results\n\npositional arguments:\n  <action>    Cache actions\n    list      List cached audits\n    clear     Clear cache\n    info      Show cache statistics\n\noptions:\n  -h, --help  show this help message and exit\n",
+      "stderr": "",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe config --help",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\nusage: probe config [-h] <action> ...\n\nView and modify tool configuration\n\npositional arguments:\n  <action>    Configuration actions\n    show      Show current configuration\n    set       Set configuration value\n    reset     Reset to default configuration\n\noptions:\n  -h, --help  show this help message and exit\n",
+      "stderr": "",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe config show",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[96m\ud83d\udd0d Current configuration...\u001b[0m\n\n\u001b[95mCurrent Configuration:\u001b[0m\n  default_depth: 2\n  default_pages: 50\n  default_host: 127.0.0.1\n  default_port: 5000\n  default_format: ['json']\n  cache_retention_days: 30\n  verbose: False\n  language: auto\n",
+      "stderr": "",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe config set test_key test_value",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[96m\ud83d\udd0d Setting test_key = test_value\u001b[0m\n\u001b[92m\u2705 Configuration updated: test_key = test_value\u001b[0m\n",
+      "stderr": "",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe config show",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[96m\ud83d\udd0d Current configuration...\u001b[0m\n\n\u001b[95mCurrent Configuration:\u001b[0m\n  default_depth: 2\n  default_pages: 50\n  default_host: 127.0.0.1\n  default_port: 5000\n  default_format: ['json']\n  cache_retention_days: 30\n  verbose: False\n  language: auto\n  test_key: test_value\n",
+      "stderr": "",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe config reset",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[96m\ud83d\udd0d Resetting to default configuration...\u001b[0m\n\u001b[92m\u2705 Configuration reset to defaults\u001b[0m\n",
+      "stderr": "",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe cache list",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[96m\ud83d\udd0d Showing 20 recent cached audits...\u001b[0m\n\n\u001b[95mRecent Cached Audits:\u001b[0m\n\u2705 https://example.com (Created: 2025-07-12 11:40:08)\n\u2705 https://naver.com (Created: 2025-07-12 09:43:22)\n\u2705 https://ourdigital.org (Created: 2025-07-12 09:42:17)\n",
+      "stderr": "",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe cache info",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[96m\ud83d\udd0d Cache statistics...\u001b[0m\n\n\u001b[95mCache Statistics:\u001b[0m\n  Total entries: 3\n  Database size: 0.13 MB\n  Status breakdown:\n    completed: 3\n",
+      "stderr": "",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe https://example.com",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[96m\ud83d\udd0d Running SEO analysis on: https://example.com\u001b[0m\n\n\u001b[95m==================================================\u001b[0m\n\u001b[95m                 Quick SEO Audit                  \u001b[0m\n\u001b[95m==================================================\u001b[0m\n\n\n\u001b[95m==================================================\u001b[0m\n\u001b[95m                Starting SEO Audit                \u001b[0m\n\u001b[95m==================================================\u001b[0m\n\n\u001b[96m\u2139\ufe0f  Step 1/8: Crawling website...\u001b[0m\n\u001b[92m\u2705 Found 1 pages\u001b[0m\n\u001b[96m\u2139\ufe0f  Step 2/8: Importing data...\u001b[0m\n\u001b[92m\u2705 Data imported successfully\u001b[0m\n\u001b[96m\u2139\ufe0f  Step 3/8: Analyzing text content...\u001b[0m\n\u001b[92m\u2705 Text analysis completed\u001b[0m\n\u001b[96m\u2139\ufe0f  Step 4/8: Checking technical SEO...\u001b[0m\n\u001b[92m\u2705 Technical SEO analysis completed\u001b[0m\n\u001b[96m\u2139\ufe0f  Step 5/8: Ranking pages...\u001b[0m\n\u001b[92m\u2705 Ranked 1 pages\u001b[0m\n\u001b[96m\u2139\ufe0f  Step 6/8: Analyzing on-page SEO...\u001b[0m\n\u001b[92m\u2705 On-page SEO analysis completed\u001b[0m\n\u001b[96m\u2139\ufe0f  Step 7/8: Generating reports...\u001b[0m\n\u001b[92m\u2705 Reports generated\u001b[0m\n\u001b[96m\u2139\ufe0f  Step 8/8: Creating presentations...\u001b[0m\nGenerated scores chart\nGenerated keywords chart\nGenerated page depth chart\nGenerated onpage scores chart\nGenerated technical scores chart\n\u001b[92m\u2705 HTML presentation: /Users/ourdigital/.seo_audit/reports/c984d06aafbecf6bc55569f964148ea3/presentations/presentation.html\u001b[0m\n\u001b[92m\u2705 PPTX presentation: /Users/ourdigital/.seo_audit/reports/c984d06aafbecf6bc55569f964148ea3/presentations/presentation.pptx\u001b[0m\n\u001b[92m\u2705 PDF report: /Users/ourdigital/.seo_audit/reports/c984d06aafbecf6bc55569f964148ea3/presentations/presentation.pdf\u001b[0m\n\n\u001b[95m==================================================\u001b[0m\n\u001b[95m                 Audit Complete!                  \u001b[0m\n\u001b[95m==================================================\u001b[0m\n\nWebsite: {'url': 'https://example.com/', 'domain': 'example.com'}\nOverall Score: 55.9/100\nTechnical SEO: 49.7/100\nOn-Page SEO: 62.0/100\n\nGenerated Files:\n  HTML: /Users/ourdigital/.seo_audit/reports/c984d06aafbecf6bc55569f964148ea3/presentations/presentation.html\n  PPTX: /Users/ourdigital/.seo_audit/reports/c984d06aafbecf6bc55569f964148ea3/presentations/presentation.pptx\n  PDF: /Users/ourdigital/.seo_audit/reports/c984d06aafbecf6bc55569f964148ea3/presentations/presentation.pdf\n\u001b[92m\u2705 SEO analysis completed successfully\u001b[0m\n",
+      "stderr": "2025-07-12 20:47:32,677 - seo_crawler - INFO - \ud06c\ub864\ub9c1 \uc2dc\uc791: https://example.com/\n2025-07-12 20:47:33,262 - seo_crawler - INFO - \ud398\uc774\uc9c0 \ud06c\ub864\ub9c1 \uc911: https://example.com/ (\uae4a\uc774: 0)\n2025-07-12 20:47:33,842 - seo_crawler - INFO - \ud06c\ub864\ub9c1 \uc644\ub8cc: 1 \ud398\uc774\uc9c0\n2025-07-12 20:47:33,876 - technical_seo_checker - INFO - \uc6f9\uc0ac\uc774\ud2b8 https://example.com/\uc758 \uae30\uc220\uc801 SEO \uc694\uc18c \uac80\uc0ac \uc2dc\uc791\n2025-07-12 20:47:33,886 - technical_seo_checker - INFO - \uc6f9\uc0ac\uc774\ud2b8 https://example.com/\uc758 \uae30\uc220\uc801 SEO \uc694\uc18c \uac80\uc0ac \uc644\ub8cc\n/Users/ourdigital/sandbox/seo-audit-basic/src/presentation/presentation_designer.py:275: UserWarning: Tight layout not applied. The bottom and top margins cannot be made large enough to accommodate all Axes decorations.\n  plt.tight_layout()\n",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe seo https://httpbin.org -p 5 -d 1",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[96m\ud83d\udd0d Analyzing: https://httpbin.org\u001b[0m\n\u001b[96m\ud83d\udd0d Configuration: Depth=1, Pages=5, Formats=['json']\u001b[0m\n\n\u001b[95m==================================================\u001b[0m\n\u001b[95m                 Quick SEO Audit                  \u001b[0m\n\u001b[95m==================================================\u001b[0m\n\n\n\u001b[95m==================================================\u001b[0m\n\u001b[95m                Starting SEO Audit                \u001b[0m\n\u001b[95m==================================================\u001b[0m\n\n\u001b[96m\u2139\ufe0f  Step 1/8: Crawling website...\u001b[0m\n\u001b[92m\u2705 Found 2 pages\u001b[0m\n\u001b[96m\u2139\ufe0f  Step 2/8: Importing data...\u001b[0m\n\u001b[92m\u2705 Data imported successfully\u001b[0m\n\u001b[96m\u2139\ufe0f  Step 3/8: Analyzing text content...\u001b[0m\n\u001b[92m\u2705 Text analysis completed\u001b[0m\n\u001b[96m\u2139\ufe0f  Step 4/8: Checking technical SEO...\u001b[0m\n\u001b[92m\u2705 Technical SEO analysis completed\u001b[0m\n\u001b[96m\u2139\ufe0f  Step 5/8: Ranking pages...\u001b[0m\n\u001b[92m\u2705 Ranked 2 pages\u001b[0m\n\u001b[96m\u2139\ufe0f  Step 6/8: Analyzing on-page SEO...\u001b[0m\n\u001b[92m\u2705 On-page SEO analysis completed\u001b[0m\n\u001b[96m\u2139\ufe0f  Step 7/8: Generating reports...\u001b[0m\n\u001b[92m\u2705 Reports generated\u001b[0m\n\u001b[96m\u2139\ufe0f  Step 8/8: Creating presentations...\u001b[0m\nGenerated scores chart\nGenerated keywords chart\nGenerated page depth chart\nGenerated onpage scores chart\nGenerated technical scores chart\n\u001b[92m\u2705 HTML presentation: /Users/ourdigital/.seo_audit/reports/48412cec1d6abc44f06f0c9d4098e94f/presentations/presentation.html\u001b[0m\n\u001b[92m\u2705 PPTX presentation: /Users/ourdigital/.seo_audit/reports/48412cec1d6abc44f06f0c9d4098e94f/presentations/presentation.pptx\u001b[0m\n\u001b[92m\u2705 PDF report: /Users/ourdigital/.seo_audit/reports/48412cec1d6abc44f06f0c9d4098e94f/presentations/presentation.pdf\u001b[0m\n\n\u001b[95m==================================================\u001b[0m\n\u001b[95m                 Audit Complete!                  \u001b[0m\n\u001b[95m==================================================\u001b[0m\n\nWebsite: {'url': 'https://httpbin.org/', 'domain': 'httpbin.org'}\nOverall Score: 50.2/100\nTechnical SEO: 53.4/100\nOn-Page SEO: 47.0/100\n\nGenerated Files:\n  HTML: /Users/ourdigital/.seo_audit/reports/48412cec1d6abc44f06f0c9d4098e94f/presentations/presentation.html\n  PPTX: /Users/ourdigital/.seo_audit/reports/48412cec1d6abc44f06f0c9d4098e94f/presentations/presentation.pptx\n  PDF: /Users/ourdigital/.seo_audit/reports/48412cec1d6abc44f06f0c9d4098e94f/presentations/presentation.pdf\n\u001b[92m\u2705 SEO analysis completed successfully\u001b[0m\n",
+      "stderr": "2025-07-12 20:47:36,419 - seo_crawler - INFO - \ud06c\ub864\ub9c1 \uc2dc\uc791: https://httpbin.org/\n2025-07-12 20:47:38,268 - seo_crawler - INFO - \ud398\uc774\uc9c0 \ud06c\ub864\ub9c1 \uc911: https://httpbin.org/ (\uae4a\uc774: 0)\n2025-07-12 20:47:41,189 - seo_crawler - INFO - \ud398\uc774\uc9c0 \ud06c\ub864\ub9c1 \uc911: mailto:me@kennethreitz.org (\uae4a\uc774: 1)\n2025-07-12 20:47:41,190 - seo_crawler - ERROR - \ud398\uc774\uc9c0 \ud06c\ub864\ub9c1 \uc911 \uc624\ub958 \ubc1c\uc0dd: mailto:me@kennethreitz.org, No connection adapters were found for 'mailto:me@kennethreitz.org'\n2025-07-12 20:47:42,196 - seo_crawler - INFO - \ud398\uc774\uc9c0 \ud06c\ub864\ub9c1 \uc911: https://httpbin.org/forms/post (\uae4a\uc774: 1)\n2025-07-12 20:47:44,260 - seo_crawler - INFO - \ud06c\ub864\ub9c1 \uc644\ub8cc: 2 \ud398\uc774\uc9c0\n2025-07-12 20:47:44,337 - technical_seo_checker - INFO - \uc6f9\uc0ac\uc774\ud2b8 https://httpbin.org/\uc758 \uae30\uc220\uc801 SEO \uc694\uc18c \uac80\uc0ac \uc2dc\uc791\n2025-07-12 20:47:44,342 - technical_seo_checker - INFO - \uc6f9\uc0ac\uc774\ud2b8 https://httpbin.org/\uc758 \uae30\uc220\uc801 SEO \uc694\uc18c \uac80\uc0ac \uc644\ub8cc\n/Users/ourdigital/sandbox/seo-audit-basic/src/presentation/presentation_designer.py:275: UserWarning: Tight layout not applied. The bottom and top margins cannot be made large enough to accommodate all Axes decorations.\n  plt.tight_layout()\n",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe seo https://httpbin.org/html -p 3 -d 1 --no-cache",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[96m\ud83d\udd0d Analyzing: https://httpbin.org/html\u001b[0m\n\u001b[96m\ud83d\udd0d Configuration: Depth=1, Pages=3, Formats=['json']\u001b[0m\n\u001b[96m\ud83d\udd0d Cleared cache for: https://httpbin.org/html\u001b[0m\n\n\u001b[95m==================================================\u001b[0m\n\u001b[95m                 Quick SEO Audit                  \u001b[0m\n\u001b[95m==================================================\u001b[0m\n\n\n\u001b[95m==================================================\u001b[0m\n\u001b[95m                Starting SEO Audit                \u001b[0m\n\u001b[95m==================================================\u001b[0m\n\n\u001b[96m\u2139\ufe0f  Step 1/8: Crawling website...\u001b[0m\n\u001b[91m\u274c No pages found during crawling\u001b[0m\n\u001b[91m\u274c SEO analysis failed\u001b[0m\n",
+      "stderr": "2025-07-12 20:47:46,604 - seo_crawler - INFO - \ud06c\ub864\ub9c1 \uc2dc\uc791: https://httpbin.org/html/\n2025-07-12 20:47:47,393 - seo_crawler - INFO - \ud398\uc774\uc9c0 \ud06c\ub864\ub9c1 \uc911: https://httpbin.org/html/ (\uae4a\uc774: 0)\n2025-07-12 20:47:48,173 - seo_crawler - WARNING - HTML\uc774 \uc544\ub2cc \ud398\uc774\uc9c0 \uac74\ub108\ub700: https://httpbin.org/html/ (\uc0c1\ud0dc \ucf54\ub4dc: 404, \ucf58\ud150\uce20 \ud0c0\uc785: text/html)\n2025-07-12 20:47:48,174 - seo_crawler - INFO - \ud06c\ub864\ub9c1 \uc644\ub8cc: 0 \ud398\uc774\uc9c0\n",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe cache list",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[96m\ud83d\udd0d Showing 20 recent cached audits...\u001b[0m\n\n\u001b[95mRecent Cached Audits:\u001b[0m\n\ud83d\udd04 https://httpbin.org/html (Created: 2025-07-12 11:47:46)\n\u2705 https://httpbin.org (Created: 2025-07-12 11:47:36)\n\u2705 https://example.com (Created: 2025-07-12 11:47:32)\n\u2705 https://naver.com (Created: 2025-07-12 09:43:22)\n\u2705 https://ourdigital.org (Created: 2025-07-12 09:42:17)\n",
+      "stderr": "",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe seo invalid-url",
+      "success": false,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[96m\ud83d\udd0d Analyzing: invalid-url\u001b[0m\n\u001b[96m\ud83d\udd0d Configuration: Depth=2, Pages=50, Formats=['json']\u001b[0m\n\n\u001b[95m==================================================\u001b[0m\n\u001b[95m                 Quick SEO Audit                  \u001b[0m\n\u001b[95m==================================================\u001b[0m\n\n\u001b[91m\u274c Invalid URL format\u001b[0m\n\u001b[91m\u274c SEO analysis failed\u001b[0m\n",
+      "stderr": "",
+      "expected_success": false
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe seo http://does-not-exist-12345.com",
+      "success": false,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[96m\ud83d\udd0d Analyzing: http://does-not-exist-12345.com\u001b[0m\n\u001b[96m\ud83d\udd0d Configuration: Depth=2, Pages=50, Formats=['json']\u001b[0m\n\n\u001b[95m==================================================\u001b[0m\n\u001b[95m                 Quick SEO Audit                  \u001b[0m\n\u001b[95m==================================================\u001b[0m\n\n\n\u001b[95m==================================================\u001b[0m\n\u001b[95m                Starting SEO Audit                \u001b[0m\n\u001b[95m==================================================\u001b[0m\n\n\u001b[96m\u2139\ufe0f  Step 1/8: Crawling website...\u001b[0m\n\u001b[91m\u274c No pages found during crawling\u001b[0m\n\u001b[91m\u274c SEO analysis failed\u001b[0m\n",
+      "stderr": "2025-07-12 20:47:51,576 - seo_crawler - INFO - \ud06c\ub864\ub9c1 \uc2dc\uc791: http://does-not-exist-12345.com/\n2025-07-12 20:47:51,710 - seo_crawler - ERROR - robots.txt \ud655\uc778 \uc911 \uc624\ub958 \ubc1c\uc0dd: HTTPConnectionPool(host='does-not-exist-12345.com', port=80): Max retries exceeded with url: /robots.txt (Caused by NameResolutionError(\"<urllib3.connection.HTTPConnection object at 0x10c566f00>: Failed to resolve 'does-not-exist-12345.com' ([Errno 8] nodename nor servname provided, or not known)\"))\n2025-07-12 20:47:51,713 - seo_crawler - ERROR - sitemap.xml \ud655\uc778 \uc911 \uc624\ub958 \ubc1c\uc0dd: HTTPConnectionPool(host='does-not-exist-12345.com', port=80): Max retries exceeded with url: /sitemap.xml (Caused by NameResolutionError(\"<urllib3.connection.HTTPConnection object at 0x10c5658e0>: Failed to resolve 'does-not-exist-12345.com' ([Errno 8] nodename nor servname provided, or not known)\"))\n2025-07-12 20:47:51,713 - seo_crawler - INFO - \ud398\uc774\uc9c0 \ud06c\ub864\ub9c1 \uc911: http://does-not-exist-12345.com/ (\uae4a\uc774: 0)\n2025-07-12 20:47:51,714 - seo_crawler - ERROR - \ud398\uc774\uc9c0 \ud06c\ub864\ub9c1 \uc911 \uc624\ub958 \ubc1c\uc0dd: http://does-not-exist-12345.com/, HTTPConnectionPool(host='does-not-exist-12345.com', port=80): Max retries exceeded with url: / (Caused by NameResolutionError(\"<urllib3.connection.HTTPConnection object at 0x10c5675f0>: Failed to resolve 'does-not-exist-12345.com' ([Errno 8] nodename nor servname provided, or not known)\"))\n2025-07-12 20:47:51,714 - seo_crawler - INFO - \ud06c\ub864\ub9c1 \uc644\ub8cc: 0 \ud398\uc774\uc9c0\n",
+      "expected_success": false
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe seo",
+      "success": false,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[91m\u274c URL required for SEO analysis\u001b[0m\n\u001b[96m\ud83d\udd0d Use 'probe seo --help' for more options\u001b[0m\n",
+      "stderr": "",
+      "expected_success": false
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe server",
+      "success": false,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[91m\u274c Server action required\u001b[0m\n\u001b[96m\ud83d\udd0d Available actions: start, stop, status\u001b[0m\n",
+      "stderr": "",
+      "expected_success": false
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe cache",
+      "success": false,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[91m\u274c Cache action required\u001b[0m\n\u001b[96m\ud83d\udd0d Available actions: list, clear, info\u001b[0m\n",
+      "stderr": "",
+      "expected_success": false
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe seo https://example.com -p invalid",
+      "success": true,
+      "return_code": 2,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n",
+      "stderr": "usage: probe seo [-h] [--interactive] [--batch FILE] [--depth N] [--pages N]\n                 [--format {json,markdown,html,pdf,pptx} [{json,markdown,html,pdf,pptx} ...]]\n                 [--output PATH] [--no-cache] [--language {auto,ko,en}]\n                 [url]\nprobe seo: error: argument --pages/-p: invalid int value: 'invalid'\n",
+      "expected_success": false
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe seo https://example.com -d 0",
+      "success": false,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[96m\ud83d\udd0d Analyzing: https://example.com\u001b[0m\n\u001b[96m\ud83d\udd0d Configuration: Depth=0, Pages=50, Formats=['json']\u001b[0m\n\n\u001b[95m==================================================\u001b[0m\n\u001b[95m                 Quick SEO Audit                  \u001b[0m\n\u001b[95m==================================================\u001b[0m\n\n\n\u001b[95m==================================================\u001b[0m\n\u001b[95m                Starting SEO Audit                \u001b[0m\n\u001b[95m==================================================\u001b[0m\n\n\u001b[96m\u2139\ufe0f  Step 1/8: Crawling website...\u001b[0m\n\u001b[92m\u2705 Found 1 pages\u001b[0m\n\u001b[96m\u2139\ufe0f  Step 2/8: Importing data...\u001b[0m\n\u001b[92m\u2705 Data imported successfully\u001b[0m\n\u001b[96m\u2139\ufe0f  Step 3/8: Analyzing text content...\u001b[0m\n\u001b[92m\u2705 Text analysis completed\u001b[0m\n\u001b[96m\u2139\ufe0f  Step 4/8: Checking technical SEO...\u001b[0m\n\u001b[92m\u2705 Technical SEO analysis completed\u001b[0m\n\u001b[96m\u2139\ufe0f  Step 5/8: Ranking pages...\u001b[0m\n\u001b[92m\u2705 Ranked 1 pages\u001b[0m\n\u001b[96m\u2139\ufe0f  Step 6/8: Analyzing on-page SEO...\u001b[0m\n\u001b[92m\u2705 On-page SEO analysis completed\u001b[0m\n\u001b[96m\u2139\ufe0f  Step 7/8: Generating reports...\u001b[0m\n\u001b[92m\u2705 Reports generated\u001b[0m\n\u001b[96m\u2139\ufe0f  Step 8/8: Creating presentations...\u001b[0m\nGenerated scores chart\nGenerated keywords chart\nGenerated page depth chart\nGenerated onpage scores chart\nGenerated technical scores chart\n\u001b[92m\u2705 HTML presentation: /Users/ourdigital/.seo_audit/reports/c984d06aafbecf6bc55569f964148ea3/presentations/presentation.html\u001b[0m\n\u001b[92m\u2705 PPTX presentation: /Users/ourdigital/.seo_audit/reports/c984d06aafbecf6bc55569f964148ea3/presentations/presentation.pptx\u001b[0m\n\u001b[92m\u2705 PDF report: /Users/ourdigital/.seo_audit/reports/c984d06aafbecf6bc55569f964148ea3/presentations/presentation.pdf\u001b[0m\n\n\u001b[95m==================================================\u001b[0m\n\u001b[95m                 Audit Complete!                  \u001b[0m\n\u001b[95m==================================================\u001b[0m\n\nWebsite: {'url': 'https://example.com/', 'domain': 'example.com'}\nOverall Score: 55.9/100\nTechnical SEO: 49.7/100\nOn-Page SEO: 62.0/100\n\nGenerated Files:\n  HTML: /Users/ourdigital/.seo_audit/reports/c984d06aafbecf6bc55569f964148ea3/presentations/presentation.html\n  PPTX: /Users/ourdigital/.seo_audit/reports/c984d06aafbecf6bc55569f964148ea3/presentations/presentation.pptx\n  PDF: /Users/ourdigital/.seo_audit/reports/c984d06aafbecf6bc55569f964148ea3/presentations/presentation.pdf\n\u001b[92m\u2705 SEO analysis completed successfully\u001b[0m\n",
+      "stderr": "2025-07-12 20:47:57,469 - seo_crawler - INFO - \ud06c\ub864\ub9c1 \uc2dc\uc791: https://example.com/\n2025-07-12 20:47:58,038 - seo_crawler - INFO - \ud398\uc774\uc9c0 \ud06c\ub864\ub9c1 \uc911: https://example.com/ (\uae4a\uc774: 0)\n2025-07-12 20:47:58,623 - seo_crawler - INFO - \ud06c\ub864\ub9c1 \uc644\ub8cc: 1 \ud398\uc774\uc9c0\n2025-07-12 20:47:58,648 - technical_seo_checker - INFO - \uc6f9\uc0ac\uc774\ud2b8 https://example.com/\uc758 \uae30\uc220\uc801 SEO \uc694\uc18c \uac80\uc0ac \uc2dc\uc791\n2025-07-12 20:47:58,654 - technical_seo_checker - INFO - \uc6f9\uc0ac\uc774\ud2b8 https://example.com/\uc758 \uae30\uc220\uc801 SEO \uc694\uc18c \uac80\uc0ac \uc644\ub8cc\n/Users/ourdigital/sandbox/seo-audit-basic/src/presentation/presentation_designer.py:275: UserWarning: Tight layout not applied. The bottom and top margins cannot be made large enough to accommodate all Axes decorations.\n  plt.tight_layout()\n",
+      "expected_success": false
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe server status",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[96m\ud83d\udd0d Checking server status...\u001b[0m\n\u001b[92m\u2705 Server is running on 127.0.0.1:5000\u001b[0m\n",
+      "stderr": "",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe seo --batch test_sites.txt -p 2 -d 1",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[96m\ud83d\udd0d Starting batch analysis from: test_sites.txt\u001b[0m\n\u001b[96m\ud83d\udd0d Processing 2 URLs from batch file\u001b[0m\n\u001b[96m\ud83d\udd0d [1/2] Processing: https://httpbin.org/html\u001b[0m\n\n\u001b[95m==================================================\u001b[0m\n\u001b[95m                 Quick SEO Audit                  \u001b[0m\n\u001b[95m==================================================\u001b[0m\n\n\n\u001b[95m==================================================\u001b[0m\n\u001b[95m                Starting SEO Audit                \u001b[0m\n\u001b[95m==================================================\u001b[0m\n\n\u001b[96m\u2139\ufe0f  Step 1/8: Crawling website...\u001b[0m\n\u001b[91m\u274c No pages found during crawling\u001b[0m\n\u001b[91m\u274c \u274c Failed: https://httpbin.org/html\u001b[0m\n\u001b[96m\ud83d\udd0d [2/2] Processing: https://httpbin.org/json\u001b[0m\n\n\u001b[95m==================================================\u001b[0m\n\u001b[95m                 Quick SEO Audit                  \u001b[0m\n\u001b[95m==================================================\u001b[0m\n\n\n\u001b[95m==================================================\u001b[0m\n\u001b[95m                Starting SEO Audit                \u001b[0m\n\u001b[95m==================================================\u001b[0m\n\n\u001b[96m\u2139\ufe0f  Step 1/8: Crawling website...\u001b[0m\n\u001b[91m\u274c No pages found during crawling\u001b[0m\n\u001b[91m\u274c \u274c Failed: https://httpbin.org/json\u001b[0m\n\u001b[96m\ud83d\udd0d Batch processing complete: 0/2 successful\u001b[0m\n",
+      "stderr": "2025-07-12 20:48:01,938 - seo_crawler - INFO - \ud06c\ub864\ub9c1 \uc2dc\uc791: https://httpbin.org/html/\n2025-07-12 20:48:02,689 - seo_crawler - INFO - \ud398\uc774\uc9c0 \ud06c\ub864\ub9c1 \uc911: https://httpbin.org/html/ (\uae4a\uc774: 0)\n2025-07-12 20:48:03,425 - seo_crawler - WARNING - HTML\uc774 \uc544\ub2cc \ud398\uc774\uc9c0 \uac74\ub108\ub700: https://httpbin.org/html/ (\uc0c1\ud0dc \ucf54\ub4dc: 404, \ucf58\ud150\uce20 \ud0c0\uc785: text/html)\n2025-07-12 20:48:03,425 - seo_crawler - INFO - \ud06c\ub864\ub9c1 \uc644\ub8cc: 0 \ud398\uc774\uc9c0\n2025-07-12 20:48:03,427 - seo_crawler - INFO - \ud06c\ub864\ub9c1 \uc2dc\uc791: https://httpbin.org/json/\n2025-07-12 20:48:04,708 - seo_crawler - INFO - \ud398\uc774\uc9c0 \ud06c\ub864\ub9c1 \uc911: https://httpbin.org/json/ (\uae4a\uc774: 0)\n2025-07-12 20:48:05,442 - seo_crawler - WARNING - HTML\uc774 \uc544\ub2cc \ud398\uc774\uc9c0 \uac74\ub108\ub700: https://httpbin.org/json/ (\uc0c1\ud0dc \ucf54\ub4dc: 404, \ucf58\ud150\uce20 \ud0c0\uc785: text/html)\n2025-07-12 20:48:05,443 - seo_crawler - INFO - \ud06c\ub864\ub9c1 \uc644\ub8cc: 0 \ud398\uc774\uc9c0\n",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe config set default_pages 15",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[96m\ud83d\udd0d Setting default_pages = 15\u001b[0m\n\u001b[92m\u2705 Configuration updated: default_pages = 15\u001b[0m\n",
+      "stderr": "",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe config set default_depth 2",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[96m\ud83d\udd0d Setting default_depth = 2\u001b[0m\n\u001b[92m\u2705 Configuration updated: default_depth = 2\u001b[0m\n",
+      "stderr": "",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe seo https://httpbin.org/html",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[96m\ud83d\udd0d Analyzing: https://httpbin.org/html\u001b[0m\n\u001b[96m\ud83d\udd0d Configuration: Depth=2, Pages=15, Formats=['json']\u001b[0m\n\n\u001b[95m==================================================\u001b[0m\n\u001b[95m                 Quick SEO Audit                  \u001b[0m\n\u001b[95m==================================================\u001b[0m\n\n\n\u001b[95m==================================================\u001b[0m\n\u001b[95m                Starting SEO Audit                \u001b[0m\n\u001b[95m==================================================\u001b[0m\n\n\u001b[96m\u2139\ufe0f  Step 1/8: Crawling website...\u001b[0m\n\u001b[91m\u274c No pages found during crawling\u001b[0m\n\u001b[91m\u274c SEO analysis failed\u001b[0m\n",
+      "stderr": "2025-07-12 20:48:09,023 - seo_crawler - INFO - \ud06c\ub864\ub9c1 \uc2dc\uc791: https://httpbin.org/html/\n2025-07-12 20:48:09,993 - seo_crawler - INFO - \ud398\uc774\uc9c0 \ud06c\ub864\ub9c1 \uc911: https://httpbin.org/html/ (\uae4a\uc774: 0)\n2025-07-12 20:48:10,729 - seo_crawler - WARNING - HTML\uc774 \uc544\ub2cc \ud398\uc774\uc9c0 \uac74\ub108\ub700: https://httpbin.org/html/ (\uc0c1\ud0dc \ucf54\ub4dc: 404, \ucf58\ud150\uce20 \ud0c0\uc785: text/html)\n2025-07-12 20:48:10,730 - seo_crawler - INFO - \ud06c\ub864\ub9c1 \uc644\ub8cc: 0 \ud398\uc774\uc9c0\n",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe cache list",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[96m\ud83d\udd0d Showing 20 recent cached audits...\u001b[0m\n\n\u001b[95mRecent Cached Audits:\u001b[0m\n\ud83d\udd04 https://httpbin.org/html (Created: 2025-07-12 11:48:09)\n\ud83d\udd04 https://httpbin.org/json (Created: 2025-07-12 11:48:03)\n\u2705 https://example.com (Created: 2025-07-12 11:47:57)\n\ud83d\udd04 http://does-not-exist-12345.com (Created: 2025-07-12 11:47:51)\n\u2705 https://httpbin.org (Created: 2025-07-12 11:47:36)\n\u2705 https://naver.com (Created: 2025-07-12 09:43:22)\n\u2705 https://ourdigital.org (Created: 2025-07-12 09:42:17)\n",
+      "stderr": "",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe seo https://httpbin.org/json -p 5 --no-cache",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[96m\ud83d\udd0d Analyzing: https://httpbin.org/json\u001b[0m\n\u001b[96m\ud83d\udd0d Configuration: Depth=2, Pages=5, Formats=['json']\u001b[0m\n\u001b[96m\ud83d\udd0d Cleared cache for: https://httpbin.org/json\u001b[0m\n\n\u001b[95m==================================================\u001b[0m\n\u001b[95m                 Quick SEO Audit                  \u001b[0m\n\u001b[95m==================================================\u001b[0m\n\n\n\u001b[95m==================================================\u001b[0m\n\u001b[95m                Starting SEO Audit                \u001b[0m\n\u001b[95m==================================================\u001b[0m\n\n\u001b[96m\u2139\ufe0f  Step 1/8: Crawling website...\u001b[0m\n\u001b[91m\u274c No pages found during crawling\u001b[0m\n\u001b[91m\u274c SEO analysis failed\u001b[0m\n",
+      "stderr": "2025-07-12 20:48:13,128 - seo_crawler - INFO - \ud06c\ub864\ub9c1 \uc2dc\uc791: https://httpbin.org/json/\n2025-07-12 20:48:15,025 - seo_crawler - INFO - \ud398\uc774\uc9c0 \ud06c\ub864\ub9c1 \uc911: https://httpbin.org/json/ (\uae4a\uc774: 0)\n2025-07-12 20:48:15,822 - seo_crawler - WARNING - HTML\uc774 \uc544\ub2cc \ud398\uc774\uc9c0 \uac74\ub108\ub700: https://httpbin.org/json/ (\uc0c1\ud0dc \ucf54\ub4dc: 404, \ucf58\ud150\uce20 \ud0c0\uc785: text/html)\n2025-07-12 20:48:15,823 - seo_crawler - INFO - \ud06c\ub864\ub9c1 \uc644\ub8cc: 0 \ud398\uc774\uc9c0\n",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe cache info",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[96m\ud83d\udd0d Cache statistics...\u001b[0m\n\n\u001b[95mCache Statistics:\u001b[0m\n  Total entries: 7\n  Database size: 0.16 MB\n  Status breakdown:\n    completed: 4\n    running: 3\n",
+      "stderr": "",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe seo https://httpbin.org/robots.txt -p 3",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[96m\ud83d\udd0d Analyzing: https://httpbin.org/robots.txt\u001b[0m\n\u001b[96m\ud83d\udd0d Configuration: Depth=2, Pages=3, Formats=['json']\u001b[0m\n\n\u001b[95m==================================================\u001b[0m\n\u001b[95m                 Quick SEO Audit                  \u001b[0m\n\u001b[95m==================================================\u001b[0m\n\n\n\u001b[95m==================================================\u001b[0m\n\u001b[95m                Starting SEO Audit                \u001b[0m\n\u001b[95m==================================================\u001b[0m\n\n\u001b[96m\u2139\ufe0f  Step 1/8: Crawling website...\u001b[0m\n\u001b[91m\u274c No pages found during crawling\u001b[0m\n\u001b[91m\u274c SEO analysis failed\u001b[0m\n",
+      "stderr": "2025-07-12 20:48:18,377 - seo_crawler - INFO - \ud06c\ub864\ub9c1 \uc2dc\uc791: https://httpbin.org/robots.txt/\n2025-07-12 20:48:19,466 - seo_crawler - INFO - \ud398\uc774\uc9c0 \ud06c\ub864\ub9c1 \uc911: https://httpbin.org/robots.txt/ (\uae4a\uc774: 0)\n2025-07-12 20:48:20,197 - seo_crawler - WARNING - HTML\uc774 \uc544\ub2cc \ud398\uc774\uc9c0 \uac74\ub108\ub700: https://httpbin.org/robots.txt/ (\uc0c1\ud0dc \ucf54\ub4dc: 404, \ucf58\ud150\uce20 \ud0c0\uc785: text/html)\n2025-07-12 20:48:20,197 - seo_crawler - INFO - \ud06c\ub864\ub9c1 \uc644\ub8cc: 0 \ud398\uc774\uc9c0\n",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe cache list -l 5",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[96m\ud83d\udd0d Showing 5 recent cached audits...\u001b[0m\n\n\u001b[95mRecent Cached Audits:\u001b[0m\n\ud83d\udd04 https://httpbin.org/robots.txt (Created: 2025-07-12 11:48:18)\n\ud83d\udd04 https://httpbin.org/json (Created: 2025-07-12 11:48:13)\n\ud83d\udd04 https://httpbin.org/html (Created: 2025-07-12 11:48:09)\n\u2705 https://example.com (Created: 2025-07-12 11:47:57)\n\ud83d\udd04 http://does-not-exist-12345.com (Created: 2025-07-12 11:47:51)\n",
+      "stderr": "",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe config reset",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[96m\ud83d\udd0d Resetting to default configuration...\u001b[0m\n\u001b[92m\u2705 Configuration reset to defaults\u001b[0m\n",
+      "stderr": "",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe seo https://httpbin.org/html -p 3 -d 1",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[96m\ud83d\udd0d Analyzing: https://httpbin.org/html\u001b[0m\n\u001b[96m\ud83d\udd0d Configuration: Depth=1, Pages=3, Formats=['json']\u001b[0m\n\n\u001b[95m==================================================\u001b[0m\n\u001b[95m                 Quick SEO Audit                  \u001b[0m\n\u001b[95m==================================================\u001b[0m\n\n\n\u001b[95m==================================================\u001b[0m\n\u001b[95m                Starting SEO Audit                \u001b[0m\n\u001b[95m==================================================\u001b[0m\n\n\u001b[96m\u2139\ufe0f  Step 1/8: Crawling website...\u001b[0m\n\u001b[91m\u274c No pages found during crawling\u001b[0m\n\u001b[91m\u274c SEO analysis failed\u001b[0m\n",
+      "stderr": "2025-07-12 20:48:23,706 - seo_crawler - INFO - \ud06c\ub864\ub9c1 \uc2dc\uc791: https://httpbin.org/html/\n2025-07-12 20:48:24,783 - seo_crawler - INFO - \ud398\uc774\uc9c0 \ud06c\ub864\ub9c1 \uc911: https://httpbin.org/html/ (\uae4a\uc774: 0)\n2025-07-12 20:48:25,532 - seo_crawler - WARNING - HTML\uc774 \uc544\ub2cc \ud398\uc774\uc9c0 \uac74\ub108\ub700: https://httpbin.org/html/ (\uc0c1\ud0dc \ucf54\ub4dc: 404, \ucf58\ud150\uce20 \ud0c0\uc785: text/html)\n2025-07-12 20:48:25,532 - seo_crawler - INFO - \ud06c\ub864\ub9c1 \uc644\ub8cc: 0 \ud398\uc774\uc9c0\n",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe config set default_depth 4",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[96m\ud83d\udd0d Setting default_depth = 4\u001b[0m\n\u001b[92m\u2705 Configuration updated: default_depth = 4\u001b[0m\n",
+      "stderr": "",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe config set default_pages 25",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[96m\ud83d\udd0d Setting default_pages = 25\u001b[0m\n\u001b[92m\u2705 Configuration updated: default_pages = 25\u001b[0m\n",
+      "stderr": "",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe config show",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[96m\ud83d\udd0d Current configuration...\u001b[0m\n\n\u001b[95mCurrent Configuration:\u001b[0m\n  default_depth: 4\n  default_pages: 25\n  default_host: 127.0.0.1\n  default_port: 5000\n  default_format: ['json']\n  cache_retention_days: 30\n  verbose: False\n  language: auto\n",
+      "stderr": "",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe config show",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[96m\ud83d\udd0d Current configuration...\u001b[0m\n\n\u001b[95mCurrent Configuration:\u001b[0m\n  default_depth: 4\n  default_pages: 25\n  default_host: 127.0.0.1\n  default_port: 5000\n  default_format: ['json']\n  cache_retention_days: 30\n  verbose: False\n  language: auto\n",
+      "stderr": "",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe config reset",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[96m\ud83d\udd0d Resetting to default configuration...\u001b[0m\n\u001b[92m\u2705 Configuration reset to defaults\u001b[0m\n",
+      "stderr": "",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe config show",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[96m\ud83d\udd0d Current configuration...\u001b[0m\n\n\u001b[95mCurrent Configuration:\u001b[0m\n  default_depth: 2\n  default_pages: 50\n  default_host: 127.0.0.1\n  default_port: 5000\n  default_format: ['json']\n  cache_retention_days: 30\n  verbose: False\n  language: auto\n",
+      "stderr": "",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe cache list",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[96m\ud83d\udd0d Showing 20 recent cached audits...\u001b[0m\n\n\u001b[95mRecent Cached Audits:\u001b[0m\n\ud83d\udd04 https://httpbin.org/html (Created: 2025-07-12 11:48:23)\n\ud83d\udd04 https://httpbin.org/robots.txt (Created: 2025-07-12 11:48:18)\n\ud83d\udd04 https://httpbin.org/json (Created: 2025-07-12 11:48:13)\n\u2705 https://example.com (Created: 2025-07-12 11:47:57)\n\ud83d\udd04 http://does-not-exist-12345.com (Created: 2025-07-12 11:47:51)\n\u2705 https://httpbin.org (Created: 2025-07-12 11:47:36)\n\u2705 https://naver.com (Created: 2025-07-12 09:43:22)\n\u2705 https://ourdigital.org (Created: 2025-07-12 09:42:17)\n",
+      "stderr": "",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe cache info",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[96m\ud83d\udd0d Cache statistics...\u001b[0m\n\n\u001b[95mCache Statistics:\u001b[0m\n  Total entries: 8\n  Database size: 0.16 MB\n  Status breakdown:\n    completed: 4\n    running: 4\n",
+      "stderr": "",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe cache list -l 5",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\n\u001b[96m\ud83d\udd0d Showing 5 recent cached audits...\u001b[0m\n\n\u001b[95mRecent Cached Audits:\u001b[0m\n\ud83d\udd04 https://httpbin.org/html (Created: 2025-07-12 11:48:23)\n\ud83d\udd04 https://httpbin.org/robots.txt (Created: 2025-07-12 11:48:18)\n\ud83d\udd04 https://httpbin.org/json (Created: 2025-07-12 11:48:13)\n\u2705 https://example.com (Created: 2025-07-12 11:47:57)\n\ud83d\udd04 http://does-not-exist-12345.com (Created: 2025-07-12 11:47:51)\n",
+      "stderr": "",
+      "expected_success": true
+    },
+    {
+      "command": "/Users/ourdigital/.local/bin/probe seo --help",
+      "success": true,
+      "return_code": 0,
+      "stdout": "Using NLTK data from: /Users/ourdigital/Utilities/nltk_data\nWeasyPrint is available\nUsing font: AppleGothic\nusage: probe seo [-h] [--interactive] [--batch FILE] [--depth N] [--pages N]\n                 [--format {json,markdown,html,pdf,pptx} [{json,markdown,html,pdf,pptx} ...]]\n                 [--output PATH] [--no-cache] [--language {auto,ko,en}]\n                 [url]\n\nComprehensive SEO audit with technical, on-page, and content analysis\n\npositional arguments:\n  url                   Target URL to analyze\n\noptions:\n  -h, --help            show this help message and exit\n  --interactive, -i     Launch interactive mode with guided prompts\n  --batch FILE, -b FILE\n                        Batch process URLs from file\n  --depth N, -d N       Crawl depth (default: 2)\n  --pages N, -p N       Maximum pages to crawl (default: 50)\n  --format {json,markdown,html,pdf,pptx} [{json,markdown,html,pdf,pptx} ...], -f {json,markdown,html,pdf,pptx} [{json,markdown,html,pdf,pptx} ...]\n                        Output format(s) (default: json)\n  --output PATH, -o PATH\n                        Output directory or file path\n  --no-cache            Disable caching and force fresh analysis\n  --language {auto,ko,en}, -l {auto,ko,en}\n                        Content language for analysis (default: auto)\n\nExamples:\n  probe seo https://example.com                    # Basic audit\n  probe seo https://site.com -d 3 -p 100          # Deep analysis\n  probe seo --interactive                          # Guided mode\n  probe seo --batch sites.txt -f pdf html         # Batch processing\n        \n",
+      "stderr": "",
+      "expected_success": true
+    }
+  ]
+}

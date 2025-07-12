@@ -2,16 +2,66 @@ import json
 import os
 from flask import render_template, jsonify, request, send_file
 from pptx import Presentation
-from weasyprint import HTML
 import matplotlib.pyplot as plt
 import matplotlib
 import numpy as np
 import io
 import base64
 
-# 한글 폰트 설정
-matplotlib.rcParams['font.family'] = 'NanumGothic, NotoSansCJK, WenQuanYi Zen Hei, sans-serif'
-matplotlib.rcParams['axes.unicode_minus'] = False
+# Conditional import for WeasyPrint with fallback
+try:
+    from weasyprint import HTML
+    WEASYPRINT_AVAILABLE = True
+    print("WeasyPrint is available")
+except ImportError as e:
+    print(f"WeasyPrint not available: {e}")
+    WEASYPRINT_AVAILABLE = False
+    
+    # Create a mock HTML class
+    class HTML:
+        def __init__(self, *args, **kwargs):
+            pass
+        
+        def write_pdf(self, output_file):
+            # Create a simple placeholder PDF message
+            with open(output_file, 'wb') as f:
+                f.write(b'%PDF-1.4\n1 0 obj\n<</Type/Catalog/Pages 2 0 R>>\nendobj\n2 0 obj\n<</Type/Pages/Kids[3 0 R]/Count 1>>\nendobj\n3 0 obj\n<</Type/Page/Parent 2 0 R/Contents 4 0 R>>\nendobj\n4 0 obj\n<</Length 44>>stream\nBT\n/F1 12 Tf\n72 720 Td\n(PDF generation not available) Tj\nET\nendstream\nendobj\nxref\n0 5\n0000000000 65535 f \n0000000009 00000 n \n0000000058 00000 n \n0000000115 00000 n \n0000000175 00000 n \ntrailer\n<</Size 5/Root 1 0 R>>\nstartxref\n271\n%%EOF')
+            return output_file
+
+# 한글 폰트 설정 (macOS 호환)
+try:
+    # macOS에서 사용 가능한 한글 폰트 시도
+    import matplotlib.font_manager as fm
+    
+    # 사용 가능한 폰트 목록에서 한글 폰트 찾기
+    font_list = [f.name for f in fm.fontManager.ttflist]
+    
+    # 우선순위 순으로 한글 폰트 시도
+    korean_fonts = [
+        'AppleGothic',      # macOS 기본 한글 폰트
+        'NanumGothic',      # 나눔고딕
+        'Malgun Gothic',    # 맑은 고딕 (Windows)
+        'Noto Sans CJK KR', # 구글 Noto 폰트
+        'DejaVu Sans',      # 기본 폰트
+        'sans-serif'        # 시스템 기본 폰트
+    ]
+    
+    # 첫 번째로 사용 가능한 폰트 선택
+    selected_font = 'DejaVu Sans'  # 기본값
+    for font in korean_fonts:
+        if font in font_list:
+            selected_font = font
+            break
+    
+    matplotlib.rcParams['font.family'] = selected_font
+    matplotlib.rcParams['axes.unicode_minus'] = False
+    print(f"Using font: {selected_font}")
+    
+except Exception as e:
+    print(f"Font configuration failed: {e}")
+    # 기본 폰트 사용
+    matplotlib.rcParams['font.family'] = 'DejaVu Sans'
+    matplotlib.rcParams['axes.unicode_minus'] = False
 
 class PresentationDesigner:
     """
@@ -43,20 +93,45 @@ class PresentationDesigner:
         
         charts = {}
         
-        # 점수 차트
-        charts['scores'] = self._generate_score_chart()
+        try:
+            # 점수 차트
+            charts['scores'] = self._generate_score_chart()
+            print("Generated scores chart")
+        except Exception as e:
+            print(f"Error generating scores chart: {e}")
+            charts['scores'] = None
         
-        # 키워드 차트
-        charts['keywords'] = self._generate_keyword_chart()
+        try:
+            # 키워드 차트
+            charts['keywords'] = self._generate_keyword_chart()
+            print("Generated keywords chart")
+        except Exception as e:
+            print(f"Error generating keywords chart: {e}")
+            charts['keywords'] = None
         
-        # 페이지 깊이 분포 차트
-        charts['page_depth'] = self._generate_page_depth_chart()
+        try:
+            # 페이지 깊이 분포 차트
+            charts['page_depth'] = self._generate_page_depth_chart()
+            print("Generated page depth chart")
+        except Exception as e:
+            print(f"Error generating page depth chart: {e}")
+            charts['page_depth'] = None
         
-        # 온페이지 SEO 점수 차트
-        charts['onpage_scores'] = self._generate_onpage_scores_chart()
+        try:
+            # 온페이지 SEO 점수 차트
+            charts['onpage_scores'] = self._generate_onpage_scores_chart()
+            print("Generated onpage scores chart")
+        except Exception as e:
+            print(f"Error generating onpage scores chart: {e}")
+            charts['onpage_scores'] = None
         
-        # 기술적 SEO 카테고리 점수 차트
-        charts['technical_scores'] = self._generate_technical_scores_chart()
+        try:
+            # 기술적 SEO 카테고리 점수 차트
+            charts['technical_scores'] = self._generate_technical_scores_chart()
+            print("Generated technical scores chart")
+        except Exception as e:
+            print(f"Error generating technical scores chart: {e}")
+            charts['technical_scores'] = None
         
         return charts
     
@@ -425,10 +500,18 @@ class PresentationDesigner:
         # 이미지를 base64로 인코딩
         chart_images = {}
         for key, path in charts.items():
-            with open(path, 'rb') as f:
-                image_data = f.read()
-                base64_data = base64.b64encode(image_data).decode('utf-8')
-                chart_images[key] = f"data:image/png;base64,{base64_data}"
+            if path and os.path.exists(path):
+                try:
+                    with open(path, 'rb') as f:
+                        image_data = f.read()
+                        base64_data = base64.b64encode(image_data).decode('utf-8')
+                        chart_images[key] = f"data:image/png;base64,{base64_data}"
+                except Exception as e:
+                    print(f"Error encoding chart {key}: {e}")
+                    chart_images[key] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="  # 1x1 transparent PNG
+            else:
+                print(f"Chart {key} not found, using placeholder")
+                chart_images[key] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="  # 1x1 transparent PNG
         
         # HTML 템플릿
         html = f"""<!DOCTYPE html>
@@ -436,7 +519,7 @@ class PresentationDesigner:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{data['title']}</title>
+    <title>{data.get('title', data.get('website', {}).get('url', 'SEO Audit Report'))}</title>
     <style>
         :root {{
             --primary-color: #4a6fa5;
@@ -643,9 +726,9 @@ class PresentationDesigner:
     <div class="presentation-container">
         <!-- 슬라이드 1: 제목 -->
         <div class="slide active" id="slide-1">
-            <h1>{data['title']}</h1>
+            <h1>{data.get('title', f"SEO Audit Report - {data.get('website', {}).get('url', 'Website')}")}</h1>
             <p><strong>분석 날짜:</strong> {data['date']}</p>
-            <p><strong>웹사이트:</strong> {data['website']}</p>
+            <p><strong>웹사이트:</strong> {data['website']['url']}</p>
             <div class="chart-container">
                 <img src="{chart_images['scores']}" alt="SEO 점수 차트">
             </div>
@@ -655,7 +738,7 @@ class PresentationDesigner:
         <!-- 슬라이드 2: 개요 -->
         <div class="slide" id="slide-2">
             <h2>개요</h2>
-            <p>이 보고서는 {data['website']}의 SEO 상태에 대한 종합적인 분석을 제공합니다.</p>
+            <p>이 보고서는 {data['website']['url']}의 SEO 상태에 대한 종합적인 분석을 제공합니다.</p>
             <ul>
                 <li>검색 엔진 최적화(SEO)는 웹사이트의 가시성과 검색 엔진 순위를 향상시키는 과정입니다.</li>
                 <li>이 감사는 기술적 SEO, 온페이지 SEO, 키워드 분석을 포함합니다.</li>
@@ -1014,8 +1097,8 @@ class PresentationDesigner:
         title = slide.shapes.title
         subtitle = slide.placeholders[1]
         
-        title.text = self.report_data['title']
-        subtitle.text = f"분석 날짜: {self.report_data['date']}\n웹사이트: {self.report_data['website']}"
+        title.text = self.report_data.get('title', f"SEO Audit Report - {self.report_data.get('website', {}).get('url', 'Website')}")
+        subtitle.text = f"분석 날짜: {self.report_data['date']}\n웹사이트: {self.report_data['website']['url']}"
     
     def _add_overview_slide(self, prs):
         """
@@ -1032,7 +1115,7 @@ class PresentationDesigner:
         content = slide.placeholders[1]
         
         title.text = "개요"
-        content.text = f"""이 보고서는 {self.report_data['website']}의 SEO 상태에 대한 종합적인 분석을 제공합니다.
+        content.text = f"""이 보고서는 {self.report_data['website']['url']}의 SEO 상태에 대한 종합적인 분석을 제공합니다.
         
 • 검색 엔진 최적화(SEO)는 웹사이트의 가시성과 검색 엔진 순위를 향상시키는 과정입니다.
 • 이 감사는 기술적 SEO, 온페이지 SEO, 키워드 분석을 포함합니다.
@@ -1110,13 +1193,16 @@ class PresentationDesigner:
 • 모바일 친화성: 웹사이트가 모바일 기기에서 얼마나 잘 작동하는지 측정"""
         
         # 차트 추가
-        if 'technical_scores' in charts:
-            left = prs.slide_width * 0.1
-            top = prs.slide_height * 0.5
-            width = prs.slide_width * 0.8
-            height = prs.slide_height * 0.4
-            
-            slide.shapes.add_picture(charts['technical_scores'], left, top, width, height)
+        if 'technical_scores' in charts and charts['technical_scores'] and os.path.exists(charts['technical_scores']):
+            try:
+                left = prs.slide_width * 0.1
+                top = prs.slide_height * 0.5
+                width = prs.slide_width * 0.8
+                height = prs.slide_height * 0.4
+                
+                slide.shapes.add_picture(charts['technical_scores'], left, top, width, height)
+            except Exception as e:
+                print(f"Error adding technical scores chart to PPTX: {e}")
     
     def _add_keywords_slide(self, prs, charts):
         """
@@ -1137,13 +1223,16 @@ class PresentationDesigner:
         content.text = "키워드 분석은 웹사이트의 콘텐츠가 사용자의 검색 의도와 얼마나 잘 일치하는지 보여줍니다."
         
         # 차트 추가
-        if 'keywords' in charts:
-            left = prs.slide_width * 0.1
-            top = prs.slide_height * 0.3
-            width = prs.slide_width * 0.8
-            height = prs.slide_height * 0.6
-            
-            slide.shapes.add_picture(charts['keywords'], left, top, width, height)
+        if 'keywords' in charts and charts['keywords'] and os.path.exists(charts['keywords']):
+            try:
+                left = prs.slide_width * 0.1
+                top = prs.slide_height * 0.3
+                width = prs.slide_width * 0.8
+                height = prs.slide_height * 0.6
+                
+                slide.shapes.add_picture(charts['keywords'], left, top, width, height)
+            except Exception as e:
+                print(f"Error adding keywords chart to PPTX: {e}")
     
     def _add_top_pages_slide(self, prs):
         """
@@ -1188,13 +1277,16 @@ class PresentationDesigner:
         content.text = "온페이지 SEO는 개별 페이지의 콘텐츠와 HTML 소스 코드를 최적화하는 것을 의미합니다."
         
         # 차트 추가
-        if 'onpage_scores' in charts:
-            left = prs.slide_width * 0.1
-            top = prs.slide_height * 0.3
-            width = prs.slide_width * 0.8
-            height = prs.slide_height * 0.6
-            
-            slide.shapes.add_picture(charts['onpage_scores'], left, top, width, height)
+        if 'onpage_scores' in charts and charts['onpage_scores'] and os.path.exists(charts['onpage_scores']):
+            try:
+                left = prs.slide_width * 0.1
+                top = prs.slide_height * 0.3
+                width = prs.slide_width * 0.8
+                height = prs.slide_height * 0.6
+                
+                slide.shapes.add_picture(charts['onpage_scores'], left, top, width, height)
+            except Exception as e:
+                print(f"Error adding onpage scores chart to PPTX: {e}")
     
     def _add_next_steps_slide(self, prs):
         """
@@ -1256,7 +1348,13 @@ class PresentationDesigner:
         Returns:
             str: 생성된 파일 경로
         """
-        # HTML을 PDF로 변환
-        HTML(filename=html_file).write_pdf(output_file)
+        if WEASYPRINT_AVAILABLE:
+            # HTML을 PDF로 변환
+            HTML(filename=html_file).write_pdf(output_file)
+        else:
+            # WeasyPrint가 없으면 placeholder PDF 생성
+            print("WeasyPrint not available, creating placeholder PDF")
+            html_obj = HTML()
+            html_obj.write_pdf(output_file)
         
         return output_file

@@ -97,29 +97,59 @@ Session-based API with endpoints for audit processing, status checking, and resu
 4. Report generation → Visual presentation creation
 5. Results available via web interface and downloadable formats
 
-## Development Notes
+## Recent Development Progress
 
-### Database Management
-- SQLite database (`src/seo_audit.db`) with automatic table creation
+### Major Bugs Fixed ✅
+1. **WeasyPrint Import Issues** - Added graceful fallback for PDF generation when system libraries are missing
+2. **Font Configuration** - Dynamic Korean font detection on macOS (now uses AppleGothic)
+3. **Link Model Import** - Fixed missing imports in technical_seo_checker.py causing NameError
+4. **NLTK Data Path** - Custom path configuration for ~/Utilities/nltk_data to avoid conflicts
+5. **URL Normalization** - Proper handling of trailing slashes in website queries
+6. **Error Handling** - Comprehensive error handling with detailed logging and graceful degradation
+7. **Chart Generation** - Robust chart creation with fallback options for missing data
+8. **Presentation Design** - Error recovery for missing dependencies with mock classes
+
+### New Features Added 🚀
+1. **Enhanced Error Logging** - Detailed stack traces and error context in main.py
+2. **Font Auto-Detection** - Dynamic font selection based on available system fonts
+3. **Mock PresentationDesigner** - Graceful fallback when dependencies are missing
+4. **Improved Import Handling** - Conditional imports with fallback classes
+5. **Better Chart Error Handling** - Individual chart generation with try/catch blocks
+6. **Enhanced Database Queries** - Better URL normalization and website lookup
+
+### Development Notes
+
+#### Database Management
+- SQLite database with automatic table creation at `instance/seo_audit.db`
 - Session-based data isolation using secure_filename for directory names
-- Database initialization handled by `init_db.py` or automatic creation in main.py
+- Database initialization handled by `init_db.py` with proper error handling
+- URL normalization for consistent website lookups
 
-### File Structure
+#### File Structure
 - **Static files**: `src/static/` contains uploads, reports, charts, and presentations
 - **Templates**: `src/templates/` contains HTML templates for web interface
 - **Session data**: Each audit creates a session directory with JSON results
+- **NLTK data**: Custom location at `~/Utilities/nltk_data` for consistent access
 
-### Key Dependencies
+#### Key Dependencies
 - **Flask + SQLAlchemy**: Web framework and ORM
 - **BeautifulSoup4 + NLTK**: HTML parsing and text analysis
 - **NetworkX**: Graph analysis for knowledge graphs
-- **matplotlib**: Chart generation
-- **python-pptx + WeasyPrint**: Document generation
+- **matplotlib**: Chart generation with Korean font support
+- **python-pptx + WeasyPrint**: Document generation (with fallback support)
 
-### Configuration
-- Crawl limits: 50 pages max, depth 3 (configurable in main.py:78)
+#### Configuration
+- Crawl limits: 50 pages max, depth 3 (configurable in main.py:89)
 - Database: SQLite with automatic table creation
 - File uploads: Secure filename handling with session isolation
+- Font detection: Automatic Korean font selection on macOS
+- Error handling: Comprehensive logging and graceful degradation
+
+#### System Requirements
+- **macOS**: Requires Homebrew packages for WeasyPrint (pango, gdk-pixbuf, etc.)
+- **NLTK**: Custom data path at ~/Utilities/nltk_data
+- **Python 3.8+**: Required for all functionality
+- **Virtual environment**: Strongly recommended for dependency isolation
 
 ## Troubleshooting
 
